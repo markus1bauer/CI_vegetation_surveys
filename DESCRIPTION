@@ -15,5 +15,11 @@ Imports:
   here
   dplyr
   readr
+  tidyr
+  stringr
+  janitor
+  lubridate
+  naniar
+  forcats
 URL: https://github.com/weecology/livedat-github-actions
 BugReports: https://github.com/weecology/livedat-github-actions/issues
