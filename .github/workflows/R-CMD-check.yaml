@@ -30,3 +30,6 @@ jobs:
 
       - name: Run datascript
         run: Rscript datascript.R
+
+      - name: Run tests
+        run: Rscript testthat.R
