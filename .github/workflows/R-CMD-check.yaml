@@ -1,35 +1,95 @@
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+# This file determines when GitHub Actions (GA) is triggered and if so what
+# sequence of steps continous integration takes.
+#
+# For a video tutorial explaining these steps click: https://youtu.be/JKF6aXtdLHs
+
+# When any of these files are modified trigger GAs (except for the ones with a '!'):
 on:
   push:
-    branches: [main, master]
+    paths:
+      - 'raw_data/FFF_excel**'
+      - '!raw_data/README.md'
+      - 'R_scripts/CI_1_Generate_reports.R'
+      - 'R_scripts/CI_2_Generate_warnings.R'
+      - 'R_scripts/CI_3_Generate_map_of_reports.R'
+      - 'R_scripts/CI_4_Generate_daily_progress_reports.R'
   pull_request:
-    branches: [main, master]
+    paths:
+      - 'raw_data/FFF_excel**'
+      - '!raw_data/README.md'
+      - 'R_scripts/CI_1_Generate_reports.R'
+      - 'R_scripts/CI_2_Generate_warnings.R'
+      - 'R_scripts/CI_3_Generate_map_of_reports.R'
+      - 'R_scripts/CI_4_Generate_daily_progress_reports.R'
 
-name: R-CMD-check
+# Name the workflow as it will appear on GA status page
+# https://github.com/SCBI-ForestGEO/SCBImortality/actions
+name: data-tests
 
+# Here are all the steps GA takes when triggered:
 jobs:
-  R-CMD-check:
-    runs-on: ubuntu-latest
+  data-tests:
+    # Set the operating system GA assumes:
+    runs-on: windows-latest
+
+    # Allow only authorized collaborators to trigger GA:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      R_KEEP_PKG_SOURCE: yes
+
+    # All steps in workflow:
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-
+      # Housekeeping - Import various actions to make process work:
+      - uses: actions/checkout@v2
+        # Use this action: https://github.com/actions/checkout#checkout-v3
+      - uses: r-lib/actions/setup-r@v1
+        # Use this action: https://github.com/r-lib/actions/tree/v2/setup-r
       - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: any::rcmdcheck
-          needs: check
 
-      - uses: r-lib/actions/check-r-package@v2
+      # Housekeeping - Run package check (may not be needed):
+      # - name: Check
+      # run: |
+      #   options(crayon.enabled = TRUE)
+      #    rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
+      #  shell: Rscript {0}
 
-      - name: Run datascript
-        run: Rscript datascript.R
+      # Run R script to generate error reports:
+      - name: Generate reports
+        id: Generate_reports
+        run: |
+          source("R_scripts/CI_1_Generate_reports.R")
+        shell: Rscript {0}
 
+      # Run R script to generate warning reports:
+      - name: Generate warnings
+        id: Generate_warnings
+        run: |
+          source("R_scripts/CI_2_Generate_warnings.R")
+        shell: Rscript {0}
+
+      # Run R script to generate map of reports:
+      - name: Generate map of reports
+        id: Generate_map_of_reports
+        run: |
+          source("R_scripts/CI_3_Generate_map_of_reports.R")
+        shell: Rscript {0}
+
+      # Run R script to generate daily progress reports:
+      - name: Generate daily progress reports
+        id: Generate_daily_progress_reports
+        run: |
+          source("R_scripts/CI_4_Generate_daily_progress_reports.R")
+        shell: Rscript {0}
+
+      # Commit and push all new files, where commits are assigned to GA bot:
+      - name: Commit new files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git pull
+          git add --all
+          git commit -am "add data"
+          git push
+
+      # Use testthat package to issue notifications of any data collection errors:
       - name: Run tests
         run: Rscript testthat.R

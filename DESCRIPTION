@@ -4,19 +4,18 @@ Description: Testing vegetation data with GitHub Actions repository.
 License: CC-BY-4.0 + file LICENSE
 Version: 0.0.1
 Authors@R: c(
-    person(given = c("Albert", "Y."), family = "Kim", role = c("cre", "aut"), email = "albert.ys.kim@gmail.com", comment = c(ORCID = "0000-0001-7824-306X")),
-    person(given = "Ethan", family = "White", role = "aut", email = "ethan@weecology.org", comment = c(ORCID = "0000-0001-6728-7745")),
-    person(given = c("Glenda", "M."), family = "Yenni", role = "aut", comment = c(ORCID = "0000-0001-6969-1848")),
     person(given = "Markus", family = "Bauer", role = "aut", email = "markus1.bauer@tum.de", comment = c(ORCID = "0000-0001-5372-4174"))
     )
-Depends: R (>= 4.2.2)
+Depends: R (>= 4.1.0)
 Imports:
   dplyr
   forcats
+  ggplot2
   here
   janitor
   lubridate
   naniar
+  patchwork
   readr
   renv
   stringr
