@@ -153,20 +153,38 @@ will_auto_fix_error_file <- NULL
 warning_file <- NULL
 
 ### Check typos ###
-sites_experiment %>%
+values <- seq(from = 0, to = 100, by = 5)
+
+data <- sites_experiment %>%
   filter(!str_detect(id, "_seeded$")) %>%
-  janitor::tabyl(vegetation_cover)
-#sites %>% filter(vegetation_cover == 17)
-species_experiment %>%
-  select(-name, -ends_with("_seeded")) %>%
-  unlist() %>%
-  janitor::tabyl()
-species_experiment %>% # Check special typos
+  filter(!(vegetation_cover %in% values) &
+           !is.na(vegetation_cover))
+
+if (count(data) > 0) {
+  write_csv(data, here("outputs", "sites_typos.csv"))
+  print("Typos are printed to CSV")
+} else {
+  print("No typo in sites")
+}
+
+
+values <- c(.5, 2, 3, 4, seq(from = 0, to = 100, by = 5))
+
+data <- species_experiment %>%
   pivot_longer(-name, names_to = "id", values_to = "value") %>%
-  filter(value == 90)
+  filter(!str_detect(id, "_seeded$")) %>%
+  filter(!(value %in% values) &
+           !is.na(value))
+
+if (count(data) > 0) {
+  write_csv(data, here("outputs", "species_typos.csv"))
+  print("Typos are printed to CSV")
+} else {
+  print("No typo in species")
+}
 
 ### Compare vegetation_cover and accumulated_cover ###
-species_experiment %>%
+data <- species_experiment %>%
   summarise(across(where(is.double), ~sum(.x, na.rm = TRUE))) %>%
   pivot_longer(cols = everything(), names_to = "id", values_to = "value") %>%
   mutate(id = factor(id)) %>%
@@ -175,8 +193,14 @@ species_experiment %>%
   select(id, survey_year, vegetation_cover, value, diff) %>%
   filter(!str_detect(id, "_seeded$")) %>%
   filter(diff > 20 | diff < -5) %>%
-  arrange(survey_year, id, diff) %>%
-  print(n = 100)
+  arrange(survey_year, id, diff)
+
+if (count(data) > 0) {
+  write_csv(data, here("outputs", "different_total_cover.csv"))
+  print("CSV file printed with differences >20 and <-5")
+} else {
+  print("No differences >20 and <-5")
+}
 
 ### Check plots over time ###
 species_experiment %>%
@@ -187,5 +211,13 @@ species_experiment %>%
 ### Check missing data ###
 miss_var_summary(sites_experiment, order = TRUE)
 vis_miss(sites_experiment, cluster = FALSE)
+ggsave(
+  here("outputs", "missing_sites_300dpi_16x8cm.tiff"),
+  dpi = 300, width = 16, height = 8, units = "cm"
+)
 miss_var_summary(traits, order = TRUE)
 vis_miss(traits, cluster = FALSE, sort_miss = TRUE)
+ggsave(
+  here("outputs", "missing_traits_300dpi_16x8cm.tiff"),
+  dpi = 300, width = 16, height = 8, units = "cm"
+)
