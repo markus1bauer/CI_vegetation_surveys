@@ -16,6 +16,7 @@ Imports:
   janitor
   lubridate
   naniar
+  pak
   patchwork
   readr
   renv
