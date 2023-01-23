@@ -7,16 +7,16 @@
 on:
   push:
     paths:
-      - 'data_raw'
-      - '!data_raw/README.md'
+      - 'data'
+      - '!data/README.md'
       - 'R/CI_1_Generate_reports.R'
       - 'R/CI_2_Generate_warnings.R'
       - 'R/CI_3_Generate_map_of_reports.R'
       - 'R/CI_4_Generate_daily_progress_reports.R'
   pull_request:
     paths:
-      - 'data_raw'
-      - '!data_raw/README.md'
+      - 'data'
+      - '!data/README.md'
       - 'R/CI_1_Generate_reports.R'
       - 'R/CI_2_Generate_warnings.R'
       - 'R/CI_3_Generate_map_of_reports.R'
