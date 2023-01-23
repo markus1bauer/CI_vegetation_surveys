@@ -1,5 +1,3 @@
-[![License](http://i.creativecommons.org/p/zero/1.0/88x31.png)](https://raw.githubusercontent.com/weecology/livedat/master/LICENSE)
-
 # livedat with GitHub Actions
 
 This was forked from the original [Template Repo](https://github.com/weecology/livedat) **using Travis CI** for continuous integration at version 0.11.2. Read [our PLOS Biology paper](https://doi.org/10.1371/journal.pbio.3000125) for more details.
