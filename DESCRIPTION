@@ -21,6 +21,7 @@ Imports:
   renv
   stringr
   testthat
+  tibble
   tidyr
 URL: https://github.com/markus1bauer/github-actions
 BugReports: https://github.com/markus1bauer/github-actions/issues

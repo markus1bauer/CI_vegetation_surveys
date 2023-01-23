@@ -3,7 +3,6 @@
 
 
 ### Packages ###
-library(data.table)
 library(dplyr)
 library(forcats)
 library(here)
@@ -12,6 +11,7 @@ library(lubridate)
 library(naniar)
 library(readr)
 library(stringr)
+library(tibble)
 library(tidyr)
 
 ### Start ###
@@ -65,7 +65,7 @@ sites_experiment <- read_csv(here("data", "data_raw_sites.csv"), col_names = TRU
          plot = str_replace(plot, "W_", "W"),
          id = str_c(plot, survey_year, sep = "_"),
          plot = factor(plot),
-         id = factor(id),
+         #id = factor(id),
          vegetation_cover = as.numeric(vegetation_cover),
          biomass = as.numeric(biomass)) %>%
   filter(!(site == "C" & (survey_year == "seeded" |
@@ -92,7 +92,7 @@ species_experiment <- data.table::fread(here("data", "data_raw_species.csv"),
   ### Check that each species occurs at least one time ###
   group_by(name) %>%
   arrange(name) %>%
-  select(name, all_of(as.character(sites_experiment$id))) %>%
+  select(name, tidyselect::all_of(sites_experiment$id)) %>%
   mutate(total = sum(c_across(
     starts_with("L") | starts_with("W")),
     na.rm = TRUE),
@@ -108,7 +108,7 @@ species_experiment <- data.table::fread(here("data", "data_raw_species.csv"),
 ## 3 Traits ####################################################################
 
 
-traits <- read_csv(here("data_raw", "data_raw_traits.csv"), col_names = TRUE,
+traits <- read_csv(here("data", "data_raw_traits.csv"), col_names = TRUE,
                    na = c("", "NA", "na"),
                    col_types =
                      cols(
