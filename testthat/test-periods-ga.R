@@ -3,12 +3,12 @@ library(dplyr)
 library(readr)
 context("Checks that all values in period variable are valid.")
 
-base_data <- read_csv("../data-raw/data.csv")
+base_data <- read_csv("../data-raw/data_raw_sites.csv")
 
 test_that(
-  desc = "Period values are valid.",
+  desc = "Vegetation cover values are valid.",
   code = {
-    all_period_values_valid <- all(base_data$period < 1000)
-    expect_true(all_period_values_valid)
+    all_vegetation_cover_valid <- all(sites_experiment$vegetation_cover < 100)
+    expect_true(all_vegetation_cover_valid)
   }
 )
