@@ -35,7 +35,6 @@ jobs:
     # Allow only authorized collaborators to trigger GA:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      CI: false
 
     # All steps in workflow:
     steps:
