@@ -8,6 +8,7 @@ Authors@R: c(
     )
 Depends: R (>= 4.1.0)
 Imports:
+  data.table
   dplyr
   forcats
   ggplot2

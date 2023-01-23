@@ -1,6 +1,4 @@
-# livedat with GitHub Actions
-
-This was forked from the original [Template Repo](https://github.com/weecology/livedat) **using Travis CI** for continuous integration at version 0.11.2. Read [our PLOS Biology paper](https://doi.org/10.1371/journal.pbio.3000125) for more details.
+Read [our PLOS Biology paper](https://doi.org/10.1371/journal.pbio.3000125) for more details.
 
 Instructions for creating an updating data workflow can be found at our companion website: 
 ## [UpdatingData.org/githubactions](https://www.updatingdata.org/githubactions/).

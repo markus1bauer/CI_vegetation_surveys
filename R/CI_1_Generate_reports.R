@@ -3,14 +3,16 @@
 
 
 ### Packages ###
-library(here)
+library(data.table)
 library(dplyr)
-library(tidyr)
+library(forcats)
+library(here)
+library(janitor)
+library(lubridate)
+library(naniar)
 library(readr)
 library(stringr)
-suppressPackageStartupMessages(library(lubridate))
-library(naniar)
-library(forcats)
+library(tidyr)
 
 ### Start ###
 rm(list = ls())
@@ -27,7 +29,7 @@ rm(list = ls())
 ## 1 Sites ####################################################################
 
 
-sites_experiment <- read_csv(here("data_raw", "data_raw_sites.csv"), col_names = TRUE,
+sites_experiment <- read_csv(here("data", "data_raw_sites.csv"), col_names = TRUE,
                              na = c("", "NA", "na"),
                              col_types =
                                cols(
@@ -78,7 +80,7 @@ sites_experiment <- read_csv(here("data_raw", "data_raw_sites.csv"), col_names =
 ## 2 Species ###################################################################
 
 
-species_experiment <- data.table::fread(here("data_raw", "data_raw_species.csv"),
+species_experiment <- data.table::fread(here("data", "data_raw_species.csv"),
                                         sep = ",",
                                         dec = ".",
                                         skip = 0,
@@ -90,7 +92,7 @@ species_experiment <- data.table::fread(here("data_raw", "data_raw_species.csv")
   ### Check that each species occurs at least one time ###
   group_by(name) %>%
   arrange(name) %>%
-  select(name, all_of(sites_experiment$id)) %>%
+  select(name, all_of(as.character(sites_experiment$id))) %>%
   mutate(total = sum(c_across(
     starts_with("L") | starts_with("W")),
     na.rm = TRUE),
@@ -100,7 +102,6 @@ species_experiment <- data.table::fread(here("data_raw", "data_raw_species.csv")
   ungroup() %>%
   select(name, sort(tidyselect::peek_vars()), -total, -presence) %>%
   mutate(across(where(is.numeric), ~replace(., is.na(.), 0)))
-
 
 
 #______________________________________________________________________________
