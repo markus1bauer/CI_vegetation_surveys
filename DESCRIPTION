@@ -21,5 +21,5 @@ Imports:
   lubridate
   naniar
   forcats
-URL: https://github.com/weecology/livedat-github-actions
-BugReports: https://github.com/weecology/livedat-github-actions/issues
+URL: https://github.com/markus1bauer/github-actions
+BugReports: https://github.com/markus1bauer/github-actions/issues
