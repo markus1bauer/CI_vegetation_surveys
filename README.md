@@ -1,17 +1,14 @@
-Read [our PLOS Biology paper](https://doi.org/10.1371/journal.pbio.3000125) for more details.
+# Continuous integration (CI) for vegetation surveys
 
-Instructions for creating an updating data workflow can be found at our companion website: 
-## [UpdatingData.org/githubactions](https://www.updatingdata.org/githubactions/).
+Here, a workflow should be created for the continuous evaluation of vegetation surveys
 
-  The basic steps are:
+### References
 
-    1. Clone the repository
-    2. Configure the repository for your project
-    3. Connect to Zenodo
-    4. Connect to Travis
-    5. Allow automated updating
-    6. Add data code
-    7. Add data
-    8. Add data checks
-    9. Update data
-    
+Yenni et al. (2019) Plos Biology [DOI: 10.1371/journal.pbio.3000125](https://doi.org/10.1371/journal.pbio.3000125)
+
+Kim et al. (2022) Methods Ecol Evol [DOI: 10.1111/2041-210X.13982](https://doi.org/10.1111/2041-210X.13982)
+
+Instructions for creating an updating data workflow: 
+
+[UpdatingData.org/githubactions](https://www.updatingdata.org/githubactions/).
+
