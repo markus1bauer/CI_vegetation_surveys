@@ -32,10 +32,6 @@ jobs:
     # Set the operating system GA assumes:
     runs-on: windows-latest
 
-    # Allow only authorized collaborators to trigger GA:
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
     # All steps in workflow:
     steps:
       # Housekeeping - Import various actions to make process work:
