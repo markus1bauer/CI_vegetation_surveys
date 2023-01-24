@@ -100,19 +100,21 @@ species <- data.table::fread(
 ## 3 Traits ####################################################################
 
 
-traits <- read_csv(here("data", "data_raw_traits.csv"), col_names = TRUE,
-                   na = c("", "NA", "na"),
-                   col_types =
-                     cols(
-                       .default = "c",
-                       name = "c",
-                       l = "d",
-                       t = "d",
-                       k = "d",
-                       f = "d",
-                       r = "d",
-                       n = "d",
-                     )) %>%
+traits <- read_csv(
+  here("data", "data_raw_traits.csv"), col_names = TRUE,
+  na = c("", "NA", "na"),
+  col_types =
+    cols(
+      .default = "c",
+      name = "c",
+      l = "d",
+      t = "d",
+      k = "d",
+      f = "d",
+      r = "d",
+      n = "d"
+      )
+  ) %>%
   separate(name, c("genus", "species", "ssp", "subspecies"), "_",
            remove = FALSE, extra = "drop", fill = "right") %>%
   mutate(genus = str_sub(genus, 1, 4),
