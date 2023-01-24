@@ -29,31 +29,18 @@ rm(list = ls())
 ## 1 Sites ####################################################################
 
 
-sites_experiment <- read_csv(here("data", "data_raw_sites.csv"), col_names = TRUE,
+sites <- read_csv(here("data", "data_raw_sites.csv"), col_names = TRUE,
                              na = c("", "NA", "na"),
                              col_types =
                                cols(
                                  .default = "?",
-                                 survey_date.seeded = col_date(format = "%Y-%m-%d"),
-                                 survey_date.2018 = col_date(format = "%Y-%m-%d"),
-                                 survey_date.2019 = col_date(format = "%Y-%m-%d"),
-                                 survey_date.2020 = col_date(format = "%Y-%m-%d"),
-                                 survey_date.2021 = col_date(format = "%Y-%m-%d"),
-                                 botanist.2018 = "c",
-                                 botanist.2019 = "c",
-                                 botanist.2020 = "c",
-                                 botanist.2021 = "c",
                                  vegetation_cover.2018 = "d",
                                  vegetation_cover.2019 = "d",
                                  vegetation_cover.2020 = "d",
-                                 vegetation_cover.2021 = "d",
-                                 biomass.2019 = "d"
+                                 vegetation_cover.2021 = "d"
                                )) %>%
   pivot_longer(
-    starts_with("vegetation_cover") |
-      starts_with("botanist") |
-      starts_with("biomass") |
-      starts_with("survey_date"),
+    starts_with("vegetation_cover"),
     names_to = c("x", "survey_year"),
     names_sep = "\\.",
     values_to = "n",
@@ -66,8 +53,7 @@ sites_experiment <- read_csv(here("data", "data_raw_sites.csv"), col_names = TRU
          id = str_c(plot, survey_year, sep = "_"),
          plot = factor(plot),
          #id = factor(id),
-         vegetation_cover = as.numeric(vegetation_cover),
-         biomass = as.numeric(biomass)) %>%
+         vegetation_cover = as.numeric(vegetation_cover)) %>%
   filter(!(site == "C" & (survey_year == "seeded" |
                             survey_year == "2018" |
                             survey_year == "2019" |
@@ -80,7 +66,7 @@ sites_experiment <- read_csv(here("data", "data_raw_sites.csv"), col_names = TRU
 ## 2 Species ###################################################################
 
 
-species_experiment <- data.table::fread(here("data", "data_raw_species.csv"),
+species <- data.table::fread(here("data", "data_raw_species.csv"),
                                         sep = ",",
                                         dec = ".",
                                         skip = 0,
@@ -92,7 +78,7 @@ species_experiment <- data.table::fread(here("data", "data_raw_species.csv"),
   ### Check that each species occurs at least one time ###
   group_by(name) %>%
   arrange(name) %>%
-  select(name, tidyselect::all_of(sites_experiment$id)) %>%
+  select(name, tidyselect::all_of(sites$id)) %>%
   mutate(total = sum(c_across(
     starts_with("L") | starts_with("W")),
     na.rm = TRUE),
@@ -130,16 +116,16 @@ traits <- read_csv(here("data", "data_raw_traits.csv"), col_names = TRUE,
   unite(abb, genus, species, subspecies, sep = "", na.rm = TRUE) %>%
   mutate(abb = str_replace(abb, "NA", ""),
          abb = as_factor(abb)) %>%
-  select(-ssp, -synonym, -nomenclature, -legal, -l, -k, -fchange) %>%
+  select(-ssp) %>%
   arrange(name)
 
 ### Check congruency of traits and species table ###
-anti_join(traits, species_experiment, by = "name") %>% select(name)
-anti_join(species_experiment, traits, by = "name") %>% select(name)
+anti_join(traits, species, by = "name") %>% select(name)
+anti_join(species, traits, by = "name") %>% select(name)
 
-### Combine with species_experiment table ###
+### Combine with species table ###
 traits <- traits %>%
-  semi_join(species_experiment, by = "name")
+  semi_join(species, by = "name")
 
 
 
@@ -155,7 +141,7 @@ warning_file <- NULL
 ### Check typos ###
 values <- seq(from = 0, to = 100, by = 5)
 
-data <- sites_experiment %>%
+data <- sites %>%
   filter(!str_detect(id, "_seeded$")) %>%
   filter(!(vegetation_cover %in% values) &
            !is.na(vegetation_cover))
@@ -170,7 +156,7 @@ if (count(data) > 0) {
 
 values <- c(.5, 2, 3, 4, seq(from = 0, to = 100, by = 5))
 
-data <- species_experiment %>%
+data <- species %>%
   pivot_longer(-name, names_to = "id", values_to = "value") %>%
   filter(!str_detect(id, "_seeded$")) %>%
   filter(!(value %in% values) &
@@ -184,11 +170,11 @@ if (count(data) > 0) {
 }
 
 ### Compare vegetation_cover and accumulated_cover ###
-data <- species_experiment %>%
+data <- species %>%
   summarise(across(where(is.double), ~sum(.x, na.rm = TRUE))) %>%
   pivot_longer(cols = everything(), names_to = "id", values_to = "value") %>%
   mutate(id = factor(id)) %>%
-  full_join(sites_experiment, by = "id") %>%
+  full_join(sites, by = "id") %>%
   mutate(diff = (value - vegetation_cover)) %>%
   select(id, survey_year, vegetation_cover, value, diff) %>%
   filter(!str_detect(id, "_seeded$")) %>%
@@ -203,14 +189,14 @@ if (count(data) > 0) {
 }
 
 ### Check plots over time ###
-species_experiment %>%
+species %>%
   select(name, starts_with("L1_19"), -ends_with("_seeded")) %>%
   filter(if_any(starts_with("L"), ~ . > 0)) %>%
   print(n = 100)
 
 ### Check missing data ###
-miss_var_summary(sites_experiment, order = TRUE)
-vis_miss(sites_experiment, cluster = FALSE)
+miss_var_summary(sites, order = TRUE)
+vis_miss(sites, cluster = FALSE)
 ggsave(
   here("outputs", "missing_sites_300dpi_16x8cm.tiff"),
   dpi = 300, width = 16, height = 8, units = "cm"
