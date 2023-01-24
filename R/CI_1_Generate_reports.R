@@ -156,10 +156,14 @@ data <- sites %>%
            !is.na(vegetation_cover))
 
 if (count(data) > 0) {
+
   write_csv(data, here("outputs", "sites_typos.csv"))
   print("Typos are printed to CSV")
+
 } else {
+
   print("No typo in sites")
+
 }
 
 
@@ -174,10 +178,14 @@ data <- species %>%
            !is.na(value))
 
 if (count(data) > 0) {
+
   write_csv(data, here("outputs", "species_typos.csv"))
   print("Typos are printed to CSV")
+
 } else {
+
   print("No typo in species")
+
 }
 
 ### Compare vegetation_cover and accumulated_cover ###
@@ -193,10 +201,14 @@ data <- species %>%
   arrange(survey_year, id, diff)
 
 if (count(data) > 0) {
+
   write_csv(data, here("outputs", "different_total_cover.csv"))
   print("CSV file printed with differences >20 and <-5")
+
 } else {
+
   print("No differences >20 and <-5")
+
 }
 
 ### Check plots over time ###
