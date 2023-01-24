@@ -53,7 +53,7 @@ sites <- read_csv(here("data", "data_raw_sites.csv"), col_names = TRUE,
          plot = str_replace(plot, "W_", "W"),
          id = str_c(plot, survey_year, sep = "_"),
          plot = factor(plot),
-         #id = factor(id),
+         id = factor(id),
          vegetation_cover = as.numeric(vegetation_cover)) %>%
   filter(!(site == "C" & (survey_year == "seeded" |
                             survey_year == "2018" |
