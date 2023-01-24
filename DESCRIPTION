@@ -8,21 +8,21 @@ Authors@R: c(
     )
 Depends: R (>= 4.1.0)
 Imports:
-  data.table
-  dplyr
-  forcats
-  ggplot2
-  here
-  janitor
-  lubridate
-  naniar
-  pak
-  patchwork
-  readr
-  renv
-  stringr
-  testthat
-  tibble
+  data.table,
+  dplyr,
+  forcats,
+  ggplot2,
+  here,
+  janitor,
+  lubridate,
+  naniar,
+  pak,
+  patchwork,
+  readr,
+  renv,
+  stringr,
+  testthat,
+  tibble,
   tidyr
 URL: https://github.com/markus1bauer/github-actions
 BugReports: https://github.com/markus1bauer/github-actions/issues
