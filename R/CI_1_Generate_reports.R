@@ -146,9 +146,10 @@ require_field_fix_error_file <- NULL
 will_auto_fix_error_file <- NULL
 warning_file <- NULL
 
-### Check typos ###
+### Set scale of total vegetation cover ###
 values <- seq(from = 0, to = 100, by = 5)
 
+### Check typos ###
 data <- sites %>%
   filter(!str_detect(id, "_seeded$")) %>%
   filter(!(vegetation_cover %in% values) &
@@ -162,8 +163,10 @@ if (count(data) > 0) {
 }
 
 
+### Set scale of species vegetation cover ###
 values <- c(.5, 2, 3, 4, seq(from = 0, to = 100, by = 5))
 
+### Check typos ###
 data <- species %>%
   pivot_longer(-name, names_to = "id", values_to = "value") %>%
   filter(!str_detect(id, "_seeded$")) %>%
