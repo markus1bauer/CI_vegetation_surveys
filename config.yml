@@ -5,6 +5,6 @@ repo: markus1bauer/git_hub_actions
 # Email address and user name that you want to associate with the automated deploys
 # Generally you want these to be different from your user account so it is clear
 # which commits are automated.
-deploy_email: "markiba@mailbox.org"
+deploy_email: "markus1.bauer@tum.de"
 deploy_username: "ci_markus"
 ---

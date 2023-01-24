@@ -83,8 +83,8 @@ jobs:
       # Commit and push all new files, where commits are assigned to GA bot:
       - name: Commit new files
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Actions"
+          git config --local user.email "markus1.bauer@tum.de"
+          git config --local user.name "markus1bauer"
           git pull
           git add --all
           git commit -am "add data"
