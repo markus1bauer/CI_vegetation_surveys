@@ -1,7 +1,7 @@
 Package: vegetationdatagithubactions
 Title: Testing vegetation data with GitHub Actions
 Description: Testing vegetation data with GitHub Actions repository.
-License: CC-BY-4.0 + file LICENSE
+License: CC0-1.0 + file LICENSE
 Version: 0.0.1
 Authors@R: c(
     person(given = "Markus", family = "Bauer", role = "aut", email = "markus1.bauer@tum.de", comment = c(ORCID = "0000-0001-5372-4174"))
