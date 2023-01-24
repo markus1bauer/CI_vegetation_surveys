@@ -31,16 +31,18 @@ rm(list = ls())
 ## 1 Sites ####################################################################
 
 
-sites <- read_csv(here("data", "data_raw_sites.csv"), col_names = TRUE,
-                             na = c("", "NA", "na"),
-                             col_types =
-                               cols(
-                                 .default = "?",
-                                 vegetation_cover.2018 = "d",
-                                 vegetation_cover.2019 = "d",
-                                 vegetation_cover.2020 = "d",
-                                 vegetation_cover.2021 = "d"
-                               )) %>%
+sites <- read_csv(
+  here("data", "data_raw_sites.csv"), col_names = TRUE,
+  na = c("", "NA", "na"),
+  col_types =
+    cols(
+      .default = "?",
+      vegetation_cover.2018 = "d",
+      vegetation_cover.2019 = "d",
+      vegetation_cover.2020 = "d",
+      vegetation_cover.2021 = "d"
+    )
+  ) %>%
   pivot_longer(
     starts_with("vegetation_cover"),
     names_to = c("x", "survey_year"),
