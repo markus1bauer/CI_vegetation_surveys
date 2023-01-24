@@ -70,15 +70,17 @@ sites <- read_csv(
 ## 2 Species ###################################################################
 
 
-species <- data.table::fread(here("data", "data_raw_species.csv"),
-                                        sep = ",",
-                                        dec = ".",
-                                        skip = 0,
-                                        header = TRUE,
-                                        na.strings = c("", "NA", "na"),
-                                        colClasses = list(
-                                          character = "name"
-                                        )) %>%
+species <- data.table::fread(
+  here("data", "data_raw_species.csv"),
+  sep = ",",
+  dec = ".",
+  skip = 0,
+  header = TRUE,
+  na.strings = c("", "NA", "na"),
+  colClasses = list(
+    character = "name"
+    )
+  ) %>%
   ### Check that each species occurs at least one time ###
   group_by(name) %>%
   arrange(name) %>%
