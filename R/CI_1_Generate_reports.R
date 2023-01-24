@@ -32,7 +32,9 @@ rm(list = ls())
 
 
 sites <- read_csv(
-  here("data", "data_raw_sites.csv"), col_names = TRUE,
+  here("data", "data_raw_sites.csv"),
+  lazy = TRUE,
+  col_names = TRUE,
   na = c("", "NA", "na"),
   col_types =
     cols(
