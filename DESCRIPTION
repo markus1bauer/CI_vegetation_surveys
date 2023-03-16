@@ -4,7 +4,8 @@ Description: Continuous integration (CI) with GitHub Actions enables vegetation 
 License: CC0-1.0 + file LICENSE
 Version: 0.0.1
 Authors@R: c(
-    person(given = "Markus", family = "Bauer", role = c("cre", "aut"), email = "markus1.bauer@tum.de", comment = c(ORCID = "0000-0001-5372-4174"))
+    person(given = "Markus", family = "Bauer", role = c("cre", "aut"), email = "markus1.bauer@tum.de", comment = c(ORCID = "0000-0001-5372-4174")),
+    person(given = c("Albert", "Y."), family = "Kim", role = c("aut"), email = "albert.ys.kim@gmail.com", comment = c(ORCID = "0000-0001-7824-306X"))
     )
 Depends: R (>= 4.1.0)
 Imports:
