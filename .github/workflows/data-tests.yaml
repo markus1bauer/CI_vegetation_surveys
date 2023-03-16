@@ -76,6 +76,7 @@ jobs:
           source("R/CI_4_Generate_daily_progress_reports.R")
         shell: Rscript {0}
 
+      # Run testhtat to issue notifications of any data collection errors
       - name: Run tests
         run: Rscript testthat.R
 
@@ -88,7 +89,3 @@ jobs:
           git add --all
           git commit -am "add data"
           git push
-
-      # Use testthat package to issue notifications of any data collection errors:
-      - name: Run tests
-        run: Rscript testthat.R
