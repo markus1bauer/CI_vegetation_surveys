@@ -1,11 +1,16 @@
 Package: vegetationCI
 Title: Continuous integration (CI) of vegetation data with GitHub Actions
 Description: Continuous integration (CI) with GitHub Actions enables vegetation ecologists to check the data for error after field sampling and typing it in the data file.
-License: LICENSE
+License: use_cc0_license()
 Version: 0.0.1
 Authors@R: c(
-    person(given = "Markus", family = "Bauer", role = c("cre", "aut"), email = "markus1.bauer@tum.de", comment = c(ORCID = "0000-0001-5372-4174")),
-    person(given = c("Albert", "Y."), family = "Kim", role = c("aut"), email = "albert.ys.kim@gmail.com", comment = c(ORCID = "0000-0001-7824-306X"))
+    utils::person(
+      given = "Markus",
+      family = "Bauer",
+      role = c("cre", "aut"),
+      email = "markus1.bauer@tum.de",
+      comment = c(ORCID = "0000-0001-5372-4174")
+      )
     )
 Depends: R (>= 4.1.0)
 Imports:
