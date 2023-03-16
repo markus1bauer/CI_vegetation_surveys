@@ -109,9 +109,6 @@ traits <- read_csv(
     cols(
       .default = "c",
       name = "c",
-      l = "d",
-      t = "d",
-      k = "d",
       f = "d",
       r = "d",
       n = "d"
