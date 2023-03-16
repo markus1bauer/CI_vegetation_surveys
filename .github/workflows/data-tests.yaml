@@ -8,7 +8,7 @@ on:
   push:
     paths:
       - 'data'
-      - '!data/README.md'
+      - '!README.md'
       - 'R/CI_1_Generate_reports.R'
       - 'R/CI_2_Generate_warnings.R'
       - 'R/CI_3_Generate_map_of_reports.R'
@@ -16,7 +16,7 @@ on:
   pull_request:
     paths:
       - 'data'
-      - '!data/README.md'
+      - '!README.md'
       - 'R/CI_1_Generate_reports.R'
       - 'R/CI_2_Generate_warnings.R'
       - 'R/CI_3_Generate_map_of_reports.R'
@@ -32,12 +32,16 @@ jobs:
     # Set the operating system GA assumes:
     runs-on: windows-latest
 
+    # Allow only authorized collaborators to trigger GA:
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
     # All steps in workflow:
     steps:
       # Housekeeping - Import various actions to make process work:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         # Use this action: https://github.com/actions/checkout#checkout-v3
-      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r@v1
         # Use this action: https://github.com/r-lib/actions/tree/v2/setup-r
       - uses: r-lib/actions/setup-r-dependencies@v2
 
@@ -76,16 +80,16 @@ jobs:
           source("R/CI_4_Generate_daily_progress_reports.R")
         shell: Rscript {0}
 
-      # Run testhtat to issue notifications of any data collection errors
-      - name: Run tests
-        run: Rscript testthat.R
-
       # Commit and push all new files, where commits are assigned to GA bot:
       - name: Commit new files
         run: |
-          git config --local user.email "markus1.bauer@tum.de"
-          git config --local user.name "markus1bauer"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
           git pull
           git add --all
           git commit -am "add data"
           git push
+
+      # Use testthat package to issue notifications of any data collection errors:
+      - name: Run tests
+        run: Rscript testthat.R
