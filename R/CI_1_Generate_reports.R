@@ -5,16 +5,11 @@
 ### Packages ###
 library(dplyr)
 library(forcats)
-library(ggplot2)
 library(here)
-library(janitor)
-library(lubridate)
-library(naniar)
 library(readr)
 library(stringr)
 library(tibble)
 library(tidyr)
-library(tibble)
 
 ### Start ###
 rm(list = ls())
