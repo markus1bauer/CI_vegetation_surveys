@@ -19,6 +19,7 @@ Encoding: UTF-8
 Depends: R (>= 4.1.0)
 Imports:
   testthat,
+  data.table,
   dplyr,
   forcats,
   ggplot2,
@@ -28,8 +29,6 @@ Imports:
   stringr,
   tibble,
   tidyr
-Depends:
-  data.table
 Suggests:
   renv,
   lubridate,
