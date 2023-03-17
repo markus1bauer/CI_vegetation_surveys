@@ -3,7 +3,7 @@
 
 
 ### Packages ###
-libarary(data.table)
+library(data.table)
 library(dplyr)
 library(forcats)
 library(here)

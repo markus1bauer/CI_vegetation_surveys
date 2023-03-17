@@ -18,6 +18,7 @@ License: CC0 + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 4.1.0)
 Imports:
+  testthat,
   data.table,
   dplyr,
   forcats,
@@ -25,8 +26,7 @@ Imports:
   readr,
   stringr,
   tibble,
-  tidyr,
-  testthat
+  tidyr
 Suggests:
   renv,
   lubridate,
