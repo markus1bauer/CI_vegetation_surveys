@@ -38,3 +38,4 @@ URL: https://github.com/markus1bauer/CI_vegetation_surveys
 BugReports: https://github.com/markus1bauer/CI_vegetation_surveys/issues
 Config/testthat/edition: 3
 RoxygenNote: 7.2.3
+LazyData: true

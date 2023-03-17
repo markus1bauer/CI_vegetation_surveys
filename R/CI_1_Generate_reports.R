@@ -27,11 +27,7 @@ rm(list = ls())
 #______________________________________________________________________________
 ## 1 Sites ####################################################################
 
-#' Sites data of Danube dike plots
-#'
-#' A dataset containing the sites information
-#'
-#' @format A data frame with 1152 rows and 16 variables:
+
 
 sites <- read_csv(
   here("data", "data_raw_sites.csv"),
