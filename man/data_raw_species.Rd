@@ -2,10 +2,10 @@
 \alias{data_raw_species}
 \docType{data}
 \title{
-%%   ~~ data name/kind ... ~~
+data_raw_species
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+Species names
 }
 \usage{data("data_raw_species")}
 \format{
