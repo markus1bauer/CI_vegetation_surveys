@@ -3,3 +3,4 @@
 ^\.csv
 ^\.git$
 ^\.github$
+^LICENSE\.md$

@@ -1,17 +1,19 @@
-library(testthat)
 library(here)
 library(dplyr)
 library(readr)
 
-context("Checks that all values are valid")
 
-base_data <- read_csv(here("data", "data_raw_sites.csv"))
+base_data <- read_csv(
+  here("data", "data_raw_sites.csv"),
+  col_types = "?"
+  ) %>%
+  as.data.frame()
 
-test_that(
+testthat::test_that(
   desc = "Values are valid",
   code = {
     all_values_valid <- all(base_data$vegetaion_cover.2018 < 101)
-    expect_true(all_values_valid)
+    testthat::expect_true(all_values_valid)
   }
 )
 
