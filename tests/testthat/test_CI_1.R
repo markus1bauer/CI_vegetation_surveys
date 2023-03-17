@@ -1,9 +1,7 @@
 library(here)
-library(dplyr)
-library(readr)
 
 
-base_data <- read_csv(
+base_data <- readr::read_csv(
   here("data", "data_raw_sites.csv"),
   col_types = "?"
   ) %>%
