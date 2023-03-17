@@ -1,8 +1,9 @@
 Package: vegetationCI
-Title: Continuous integration (CI) of vegetation data with GitHub Actions
-Description: Continuous integration (CI) with GitHub Actions enables vegetation ecologists to check the data for error after field sampling and typing it in the data file.
-License: CC0 + file LICENSE
 Version: 0.0.1
+Title: Continuous integration (CI) of vegetation data with GitHub Actions
+Description: Continuous integration (CI) with GitHub Actions enables vegetation
+    ecologists to check the data for error after field sampling and typing it
+    in the data file.
 Authors@R: c(
     utils::person(
       given = "Markus",
@@ -12,22 +13,26 @@ Authors@R: c(
       comment = c(ORCID = "0000-0001-5372-4174")
       )
     )
+Maintainer: Markus Bauer <markus1.bauer@tum.de>
+License: CC0 + file LICENSE
+Encoding: UTF-8
 Depends: R (>= 4.1.0)
 Imports:
-  data.table,
   dplyr,
-  forcats,
-  ggplot2,
   here,
-  janitor,
-  lubridate,
-  naniar,
-  patchwork,
   readr,
-  renv,
-  stringr,
   testthat,
   tibble,
   tidyr
-URL: https://github.com/markus1bauer/github-actions
-BugReports: https://github.com/markus1bauer/github-actions/issues
+Suggests:
+  renv,
+  stringr,
+  forcats,
+  lubridate,
+  janitor,
+  naniar,
+  ggplot2,
+  patchwork
+URL: https://github.com/markus1bauer/CI_vegetation_surveys
+BugReports: https://github.com/markus1bauer/CI_vegetation_surveys/issues
+Config/testthat/edition: 3
