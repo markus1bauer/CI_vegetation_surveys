@@ -19,15 +19,15 @@ Encoding: UTF-8
 Depends: R (>= 4.1.0)
 Imports:
   dplyr,
+  forcats,
   here,
   readr,
-  testthat,
+  stringr,
   tibble,
-  tidyr
+  tidyr,
+  testthat
 Suggests:
   renv,
-  stringr,
-  forcats,
   lubridate,
   janitor,
   naniar,
