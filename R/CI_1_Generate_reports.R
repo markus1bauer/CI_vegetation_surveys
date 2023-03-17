@@ -153,7 +153,7 @@ data <- sites %>%
 
 if (count(data) > 0) {
 
-  readr::write_csv(data, here("outputs", "sites_typos.csv"))
+  readr::write_csv(data, here("outputs", "sites_typos.csv"), lazy = FALSE)
   print("Typos are printed to CSV")
 
 } else {
@@ -175,7 +175,7 @@ data <- species %>%
 
 if (count(data) > 0) {
 
-  write_csv(data, here("outputs", "species_typos.csv"))
+  write_csv(data, here("outputs", "species_typos.csv"), lazy = FALSE)
   print("Typos are printed to CSV")
 
 } else {
@@ -198,7 +198,7 @@ data <- species %>%
 
 if (count(data) > 0) {
 
-  write_csv(data, here("outputs", "different_total_cover.csv"))
+  write_csv(data, here("outputs", "different_total_cover.csv"), lazy = FALSE)
   print("CSV file printed with differences >20 and <(-5)")
 
 } else {
