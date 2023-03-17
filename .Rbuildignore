@@ -4,3 +4,5 @@
 ^\.git$
 ^\.github$
 ^LICENSE\.md$
+^config.yml
+^outputs
