@@ -3,10 +3,10 @@
 
 
 ### Packages ###
-library(data.table)
 library(dplyr)
 library(forcats)
 library(here)
+library(naniar)
 library(readr)
 library(stringr)
 library(tibble)

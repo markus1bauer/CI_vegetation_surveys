@@ -23,6 +23,7 @@ Imports:
   dplyr,
   forcats,
   here,
+  naniar,
   readr,
   stringr,
   tibble,
@@ -31,7 +32,6 @@ Suggests:
   renv,
   lubridate,
   janitor,
-  naniar,
   ggplot2,
   patchwork
 URL: https://github.com/markus1bauer/CI_vegetation_surveys
