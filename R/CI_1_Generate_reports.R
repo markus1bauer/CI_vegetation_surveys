@@ -5,6 +5,7 @@
 ### Packages ###
 library(dplyr)
 library(forcats)
+library(ggplot2)
 library(here)
 library(naniar)
 library(readr)
