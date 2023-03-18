@@ -31,7 +31,7 @@ rm(list = ls())
 
 sites <- read_csv(
   here("data", "data_raw_sites.csv"),
-  lazy = TRUE,
+  lazy = FALSE,
   col_names = TRUE,
   na = c("", "NA", "na"),
   col_types =
@@ -101,7 +101,9 @@ species <- data.table::fread(
 
 
 traits <- read_csv(
-  here("data", "data_raw_traits.csv"), col_names = TRUE,
+  here("data", "data_raw_traits.csv"),
+  lazy = FALSE,
+  col_names = TRUE,
   na = c("", "NA", "na"),
   col_types =
     cols(
