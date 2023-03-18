@@ -10,4 +10,6 @@ Yenni et al. (2019) Plos Biology [DOI: 10.1371/journal.pbio.3000125](https://doi
 
 Kim et al. (2022) Methods Ecol Evol [DOI: 10.1111/2041-210X.13982](https://doi.org/10.1111/2041-210X.13982)
 
+Example of Kim et al. (2022): [SCBImortality](https://github.com/SCBI-ForestGEO/SCBImortality)
+
 Instructions for creating an updating data workflow: [UpdatingData.org/githubactions](https://www.updatingdata.org/githubactions/).
