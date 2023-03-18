@@ -13,3 +13,6 @@ Kim et al. (2022) Methods Ecol Evol [DOI: 10.1111/2041-210X.13982](https://doi.o
 Example of Kim et al. (2022): [SCBImortality](https://github.com/SCBI-ForestGEO/SCBImortality)
 
 Instructions for creating an updating data workflow: [UpdatingData.org/githubactions](https://www.updatingdata.org/githubactions/).
+
+
+![picture](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/different_total_cover.csv)
