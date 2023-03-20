@@ -13,6 +13,7 @@ library(readr)
 library(stringr)
 library(tibble)
 library(tidyr)
+library(webshot2)
 
 ### Start ###
 rm(list = ls())
@@ -205,7 +206,8 @@ data %>%
   gt() %>%
   tab_options(table.font.size = px(10)) %>%
   gtsave(
-    here("tests", "testthat", "warnings_different_total_cover.png"))
+    here("tests", "testthat", "warnings_different_total_cover.png")
+    )
 
 readr::write_csv(
   data,
