@@ -153,6 +153,7 @@ data <- sites %>%
 
 data %>%
   gt() %>%
+  tab_options(table.font.size = px(10)) %>%
   gtsave(here("tests", "testthat", "warnings_sites_typos.png"))
 
 write_csv(
@@ -176,6 +177,7 @@ data <- species %>%
 
 data %>%
   gt() %>%
+  tab_options(table.font.size = px(10)) %>%
   gtsave(here("tests", "testthat", "warnings_species_typos.png"))
 
 write_csv(
@@ -201,7 +203,9 @@ data <- species %>%
 
 data %>%
   gt() %>%
-  gtsave(here("tests", "testthat", "warnings_different_total_cover.png"))
+  tab_options(table.font.size = px(10)) %>%
+  gtsave(
+    here("tests", "testthat", "warnings_different_total_cover.png"))
 
 readr::write_csv(
   data,
@@ -227,12 +231,13 @@ miss_var_summary(sites, order = TRUE)
 vis_miss(sites, cluster = FALSE) +
   theme(plot.background = element_rect(fill = "white"))
 ggsave(
-  here("tests", "testthat", "reports_missing_sites.png")#,
-  #dpi = 300, width = 15, height = 9, units = "cm"
+  here("tests", "testthat", "reports_missing_sites.png"),
+  dpi = 300, height = 11, units = "cm"
 )
 miss_var_summary(traits, order = TRUE)
-vis_miss(traits, cluster = FALSE, sort_miss = TRUE)
+vis_miss(traits, cluster = FALSE, sort_miss = TRUE) +
+  theme(plot.background = element_rect(fill = "white"))
 ggsave(
   here("tests", "testthat", "reports_missing_traits.png"),
-  dpi = 300, width = 15, height = 9, units = "cm"
+  dpi = 300, height = 11, units = "cm"
 )
