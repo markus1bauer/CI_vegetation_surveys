@@ -24,9 +24,7 @@ rm(list = ls())
 
 
 
-#______________________________________________________________________________
 ## 1 Sites ####################################################################
-
 
 
 sites <- read_csv(
@@ -66,7 +64,6 @@ sites <- read_csv(
 
 
 
-#______________________________________________________________________________
 ## 2 Species ###################################################################
 
 
@@ -96,7 +93,7 @@ species <- data.table::fread(
   mutate(across(where(is.numeric), ~replace(., is.na(.), 0)))
 
 
-#______________________________________________________________________________
+
 ## 3 Traits ####################################################################
 
 
@@ -136,18 +133,102 @@ traits <- traits %>%
 
 
 
-#______________________________________________________________________________
-## 4 Check data frames #########################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Check data #################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+## 1 Sites' vegetation cover ##################################################
+
+
+### Set scale of total vegetation cover ###
+values <- seq(from = 0, to = 100, by = 5)
+
+### Check typos of sites cover ###
+data <- sites %>%
+  filter(!str_detect(id, "_seeded$")) %>%
+  filter(!(vegetation_cover %in% values) &
+           !is.na(vegetation_cover))
+
+if (count(data) > 0) {
+
+  write_csv(
+    data,
+    here("tests", "testthat", "warnings_sites_typos.csv")
+  )
+  print("Typos are printed to CSV")
+
+} else {
+
+  print("No typo in sites")
+
+}
 
 
 
-### Check plots over time ###
+## 2 Species' vegetation cover #################################################
+
+
+### Set scale of species vegetation cover ###
+values <- c(.5, 2, 3, 4, seq(from = 0, to = 100, by = 5))
+
+### Check typos of species ###
+data <- species %>%
+  pivot_longer(-name, names_to = "id", values_to = "value") %>%
+  filter(!str_detect(id, "_seeded$")) %>%
+  filter(!(value %in% values) &
+           !is.na(value))
+
+if (count(data) > 0) {
+
+  write_csv(
+    data,
+    here("tests", "testthat", "warnings_species_typos.csv")
+  )
+  print("Typos are printed to CSV")
+
+} else {
+
+  print("No typo in species")
+
+}
+
+
+
+## 3 Compare vegetation_cover and accumulated_cover ###########################
+
+
+data <- species %>%
+  summarise(across(where(is.double), ~sum(.x, na.rm = TRUE))) %>%
+  pivot_longer(cols = everything(), names_to = "id", values_to = "value") %>%
+  mutate(id = factor(id)) %>%
+  full_join(sites, by = "id") %>%
+  mutate(diff = (value - vegetation_cover)) %>%
+  select(id, survey_year, vegetation_cover, value, diff) %>%
+  filter(!str_detect(id, "_seeded$")) %>%
+  filter(diff > 20 | diff < -5) %>%
+  arrange(survey_year, id, diff)
+
+readr::write_csv(
+  data,
+  here("tests", "testthat", "warnings_different_total_cover.csv")
+)
+
+
+
+## 4 Check plots over time #####################################################
+
+
 species %>%
   select(name, starts_with("L1_19"), -ends_with("_seeded")) %>%
   filter(if_any(starts_with("L"), ~ . > 0)) %>%
   print(n = 100)
 
-### Check missing data ###
+
+
+## 5 Check missing data ########################################################
+
+
 miss_var_summary(sites, order = TRUE)
 vis_miss(sites, cluster = FALSE)
 ggsave(
