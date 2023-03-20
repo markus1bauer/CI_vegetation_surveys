@@ -216,7 +216,8 @@ species %>%
 
 
 miss_var_summary(sites, order = TRUE)
-vis_miss(sites, cluster = FALSE)
+vis_miss(sites, cluster = FALSE) +
+  theme(panel.background = element_rect(fill = "white"))
 ggsave(
   here("tests", "testthat", "reports_missing_sites.png"),
   dpi = 300, width = 15, height = 9, units = "cm"
