@@ -17,7 +17,7 @@ Instructions for creating an updating data workflow: [UpdatingData.org/githubact
 ### Workflow
 
 
-![data-tests](https://github.com/markus1bauer/CI_vegetation_survey/workflows/data-tests.yaml/badge.svg)
+![data-tests](https://github.com/markus1bauer/CI_vegetation_survey/actions/workflows/data-tests.yaml/badge.svg)
 
 ![Warnings](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.csv)
 
