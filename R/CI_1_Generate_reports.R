@@ -151,12 +151,12 @@ species %>%
 miss_var_summary(sites, order = TRUE)
 vis_miss(sites, cluster = FALSE)
 ggsave(
-  here("tests", "testthat", "reports", "missing_sites_300dpi_16x8cm.tiff"),
+  here("tests", "testthat", "reports_missing_sites_300dpi_16x8cm.tiff"),
   dpi = 300, width = 16, height = 8, units = "cm"
 )
 miss_var_summary(traits, order = TRUE)
 vis_miss(traits, cluster = FALSE, sort_miss = TRUE)
 ggsave(
-  here("tests", "testthat", "reports", "missing_traits_300dpi_16x8cm.tiff"),
+  here("tests", "testthat", "reports_missing_traits_300dpi_16x8cm.tiff"),
   dpi = 300, width = 16, height = 8, units = "cm"
 )

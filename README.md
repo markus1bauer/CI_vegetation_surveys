@@ -19,8 +19,8 @@ Instructions for creating an updating data workflow: [UpdatingData.org/githubact
 
 ![data-tests](https://github.com/markus1bauer/CI_vegetation_survey/workflows/data-tests.yaml/badge.svg)
 
-![Warnings](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings/different_total_cover.csv)
+![Warnings](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.csv)
 
-![Reports](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports/missing_sites_300dpi_16x8cm.tiff)
+![Reports](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_sites_300dpi_16x8cm.tiff)
 
-![Reports](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports/missing_traits_300dpi_16x8cm.tiff)
+![Reports](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_traits_300dpi_16x8cm.tiff)

@@ -160,7 +160,7 @@ if (count(data) > 0) {
 
   write_csv(
     data,
-    here("tests", "testthat", "warnings", "sites_typos.csv")
+    here("tests", "testthat", "warnings_sites_typos.csv")
   )
   print("Typos are printed to CSV")
 
@@ -185,7 +185,7 @@ if (count(data) > 0) {
 
   write_csv(
     data,
-    here("tests", "testthat", "warnings", "species_typos.csv")
+    here("tests", "testthat", "warnings_species_typos.csv")
   )
   print("Typos are printed to CSV")
 
@@ -212,7 +212,7 @@ if (count(data) > 0) {
   print("CSV file printed with differences >20 and <(-5)")
   readr::write_csv(
     data,
-    here("tests", "testthat", "warnings", "different_total_cover.csv")
+    here("tests", "testthat", "warnings_different_total_cover.csv")
   )
 
 } else {
