@@ -1,7 +1,7 @@
 # Continuous integration (CI) for vegetation surveys
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
-![data-tests.yaml](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/.github/workflows/data-tests.yaml/badge.svg)
+[![data-tests](https://github.com/markus1bauer/CI_vegetation_surveys/actions/workflows/data-tests.yaml/badge.svg)](https://github.com/markus1bauer/CI_vegetation_surveys/actions/workflows/data-tests.yaml)
 
 Here, a workflow should be created for the continuous evaluation of vegetation surveys.
 
