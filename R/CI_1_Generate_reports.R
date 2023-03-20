@@ -214,17 +214,7 @@ readr::write_csv(
 
 
 
-## 4 Check plots over time #####################################################
-
-
-species %>%
-  select(name, starts_with("L1_19"), -ends_with("_seeded")) %>%
-  filter(if_any(starts_with("L"), ~ . > 0)) %>%
-  print(n = 100)
-
-
-
-## 5 Check missing data ########################################################
+## 4 Check missing data ########################################################
 
 
 miss_var_summary(sites, order = TRUE)
