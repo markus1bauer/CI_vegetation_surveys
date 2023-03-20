@@ -20,4 +20,8 @@ https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.
 
 [![data-tests](https://github.com/markus1bauer/CI_vegetation_survey/actions/workflows/data-tests/badge.svg)](https://github.com/markus1bauer/CI_vegetation_survey/tree/main/testthat)
 
-![picture](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/different_total_cover.csv)
+![Warnings](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings/different_total_cover.csv)
+
+![Reports](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports/missing_sites_300dpi_16x8cm.tiff)
+
+![Reports](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports/missing_traits_300dpi_16x8cm.tiff)
