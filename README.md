@@ -7,13 +7,13 @@ Here, a workflow should be created for the continuous evaluation of vegetation s
 
 ## Reports
 
-![Missing sites](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_sites_300dpi_16x8cm.png)
+![Missing sites](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_sites.png)
 
-![Missing traits](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_traits_300dpi_16x8cm.png)
+![Missing traits](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_traits.png)
 
 ## Warnings
 
-![Different total cover](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.csv)
+[![Different total cover](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.csv)
 
 [![There_is_no_warnings_:-)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/testthat/warnings.png)](https://github.com/markus1bauer/CI_vegetation_surveys/tree/main/tests/testthat/)
 

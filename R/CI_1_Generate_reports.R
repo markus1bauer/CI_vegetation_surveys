@@ -150,20 +150,10 @@ data <- sites %>%
   filter(!(vegetation_cover %in% values) &
            !is.na(vegetation_cover))
 
-if (count(data) > 0) {
-
-  write_csv(
-    data,
-    here("tests", "testthat", "warnings_sites_typos.csv")
+write_csv(
+  data,
+  here("tests", "testthat", "warnings_sites_typos.csv")
   )
-  print("Typos are printed to CSV")
-
-} else {
-
-  print("No typo in sites")
-
-}
-
 
 
 ## 2 Species' vegetation cover #################################################
@@ -179,20 +169,10 @@ data <- species %>%
   filter(!(value %in% values) &
            !is.na(value))
 
-if (count(data) > 0) {
-
-  write_csv(
-    data,
-    here("tests", "testthat", "warnings_species_typos.csv")
+write_csv(
+  data,
+  here("tests", "testthat", "warnings_species_typos.csv")
   )
-  print("Typos are printed to CSV")
-
-} else {
-
-  print("No typo in species")
-
-}
-
 
 
 ## 3 Compare vegetation_cover and accumulated_cover ###########################
@@ -208,6 +188,12 @@ data <- species %>%
   filter(!str_detect(id, "_seeded$")) %>%
   filter(diff > 20 | diff < -5) %>%
   arrange(survey_year, id, diff)
+
+library(gt)
+
+data %>%
+  gt() %>%
+  gtsave(here("tests", "testthat", "warnings_different_total_cover.png"))
 
 readr::write_csv(
   data,
@@ -232,12 +218,12 @@ species %>%
 miss_var_summary(sites, order = TRUE)
 vis_miss(sites, cluster = FALSE)
 ggsave(
-  here("tests", "testthat", "reports_missing_sites_300dpi_16x8cm.png"),
-  dpi = 300, width = 16, height = 8, units = "cm"
+  here("tests", "testthat", "reports_missing_sites.png"),
+  dpi = 300, width = 15, height = 9, units = "cm"
 )
 miss_var_summary(traits, order = TRUE)
 vis_miss(traits, cluster = FALSE, sort_miss = TRUE)
 ggsave(
-  here("tests", "testthat", "reports_missing_traits_300dpi_16x8cm.png"),
-  dpi = 300, width = 16, height = 8, units = "cm"
+  here("tests", "testthat", "reports_missing_traits.png"),
+  dpi = 300, width = 15, height = 9, units = "cm"
 )
