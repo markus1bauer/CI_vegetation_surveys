@@ -212,7 +212,7 @@ if (count(data) > 0) {
   print("CSV file printed with differences >20 and <(-5)")
   readr::write_csv(
     data,
-    here("tests", "testthat", "different_total_cover.csv")
+    here("tests", "testthat", "warnings", "different_total_cover.csv")
   )
 
 } else {
