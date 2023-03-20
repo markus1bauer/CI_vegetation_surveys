@@ -29,7 +29,8 @@ Imports:
   readr,
   stringr,
   tibble,
-  tidyr
+  tidyr,
+  webshot2
 Suggests:
   renv,
   lubridate,
