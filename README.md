@@ -14,5 +14,10 @@ Example of Kim et al. (2022): [SCBImortality](https://github.com/SCBI-ForestGEO/
 
 Instructions for creating an updating data workflow: [UpdatingData.org/githubactions](https://www.updatingdata.org/githubactions/).
 
+### Workflow
+
+https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.svg
+
+[![data-tests](https://github.com/markus1bauer/CI_vegetation_survey/actions/workflows/data-tests/badge.svg)](https://github.com/markus1bauer/CI_vegetation_survey/tree/main/testthat)
 
 ![picture](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/different_total_cover.csv)
