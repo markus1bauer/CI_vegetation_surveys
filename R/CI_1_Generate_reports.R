@@ -204,7 +204,7 @@ data <- species %>%
 
 data %>%
   gt() %>%
-  tab_options(table.font.size = px(10)) %>%
+  tab_options(table.font.size = pct(80)) %>%
   gtsave(
     here("tests", "testthat", "warnings_different_total_cover.png")
     )
