@@ -15,7 +15,9 @@ A workflow for the continuous evaluation of vegetation surveys.
 
 [![Different total cover](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.csv)
 
-[![There_is_no_warnings_:-)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/testthat/warnings.png)](https://github.com/markus1bauer/CI_vegetation_surveys/tree/main/tests/testthat/)
+[![Sites typos](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_species_typos.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_species_typos.csv)
+
+[![Species typos](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_sites_typos.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_sites_typos.csv)
 
 ## References
 
