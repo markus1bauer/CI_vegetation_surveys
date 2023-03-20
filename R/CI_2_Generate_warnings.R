@@ -147,10 +147,13 @@ require_field_fix_error_file <- NULL
 will_auto_fix_error_file <- NULL
 warning_file <- NULL
 
+
+### a Sites' vegetation cover #################################################
+
 ### Set scale of total vegetation cover ###
 values <- seq(from = 0, to = 100, by = 5)
 
-### Check typos of sites ###
+### Check typos of sites cover ###
 data <- sites %>%
   filter(!str_detect(id, "_seeded$")) %>%
   filter(!(vegetation_cover %in% values) &
@@ -170,6 +173,8 @@ if (count(data) > 0) {
 
 }
 
+
+### b Species' vegetation cover ################################################
 
 ### Set scale of species vegetation cover ###
 values <- c(.5, 2, 3, 4, seq(from = 0, to = 100, by = 5))
@@ -195,7 +200,9 @@ if (count(data) > 0) {
 
 }
 
-### Compare vegetation_cover and accumulated_cover ###
+
+### c Compare vegetation_cover and accumulated_cover ###########################
+
 data <- species %>%
   summarise(across(where(is.double), ~sum(.x, na.rm = TRUE))) %>%
   pivot_longer(cols = everything(), names_to = "id", values_to = "value") %>%
@@ -207,16 +214,7 @@ data <- species %>%
   filter(diff > 20 | diff < -5) %>%
   arrange(survey_year, id, diff)
 
-if (count(data) > 0) {
-
-  print("CSV file printed with differences >20 and <(-5)")
-  readr::write_csv(
-    data,
-    here("tests", "testthat", "warnings_different_total_cover.csv")
-  )
-
-} else {
-
-  print("No differences >20 and <(-5)")
-
-}
+readr::write_csv(
+  data,
+  here("tests", "testthat", "warnings_different_total_cover.csv")
+)
