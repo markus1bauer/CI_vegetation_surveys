@@ -1,8 +1,7 @@
 # Generate warnings looking at the reports that are not looked at with testhat ####
-
 ## this script is run automatically when there is a push
 
-rm(list = ls())
+
 
 ### Packages ###
 library(dplyr)
@@ -19,202 +18,57 @@ library(tidyr)
 rm(list = ls())
 
 
+#### Load files ####
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Load data ##################################################################
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-#______________________________________________________________________________
-## 1 Sites ####################################################################
+path <- file.path(here("testthat", "will_auto_fix_error_file.csv"))
+if(file.exists(path)) will_auto_fix_error_file <- read.csv(path)
 
 
 
-sites <- read_csv(
-  here("data", "data_raw_sites.csv"),
-  lazy = TRUE,
-  col_names = TRUE,
-  na = c("", "NA", "na"),
-  col_types =
-    cols(
-      .default = "?",
-      vegetation_cover.2018 = "d",
-      vegetation_cover.2019 = "d",
-      vegetation_cover.2020 = "d",
-      vegetation_cover.2021 = "d"
-    )
-) %>%
-  pivot_longer(
-    starts_with("vegetation_cover"),
-    names_to = c("x", "survey_year"),
-    names_sep = "\\.",
-    values_to = "n",
-    values_transform = list (n = as.character)
-  ) %>%
-  pivot_wider(names_from = "x", values_from = "n") %>%
-  mutate(plot = str_replace(plot, "-", "_"),
-         plot = str_replace(plot, "L_", "L"),
-         plot = str_replace(plot, "W_", "W"),
-         id = str_c(plot, survey_year, sep = "_"),
-         plot = factor(plot),
-         id = factor(id),
-         vegetation_cover = as.numeric(vegetation_cover)) %>%
-  filter(!(site == "C" & (survey_year == "seeded" |
-                            survey_year == "2018" |
-                            survey_year == "2019" |
-                            survey_year == "2020" |
-                            survey_year == "2021")))
+path <- file.path(here("testthat", "warnings_file.csv"))
+if(file.exists(path)) warning_file <- read.csv(path)
 
 
+# write warning messages ####
 
-#______________________________________________________________________________
-## 2 Species ###################################################################
-
-
-species <- data.table::fread(
-  here("data", "data_raw_species.csv"),
-  sep = ",",
-  dec = ".",
-  skip = 0,
-  header = TRUE,
-  na.strings = c("", "NA", "na"),
-  colClasses = list(
-    character = "name"
+warning_messages <- c(
+  "unhealthy_but_wrong_status" = "There are living trees that are unhealthy but status is not AU.",
+  "wounded_level_but_wrong_status_or_FAD" = "There are trees with wounded level but no W in FAD."
   )
-) %>%
-  ### Check that each species occurs at least one time ###
-  group_by(name) %>%
-  arrange(name) %>%
-  select(name, tidyselect::all_of(sites$id)) %>%
-  mutate(total = sum(c_across(
-    starts_with("L") | starts_with("W")),
-    na.rm = TRUE),
-    presence = if_else(total > 0, 1, 0)) %>%
-  # filter only species which occur at least one time:
-  filter(presence == 1) %>%
-  ungroup() %>%
-  select(name, sort(tidyselect::peek_vars()), -total, -presence) %>%
-  mutate(across(where(is.numeric), ~replace(., is.na(.), 0)))
 
 
-#______________________________________________________________________________
-## 3 Traits ####################################################################
+# check if files exist and generate a plot with the warning ####
+
+if(exists("will_auto_fix_error_file"))
+  all_will_be_fixed <- paste(
+    c(
+      "ERRORS THAT WILL AUTO FIX:\n",
+      warning_messages[unique(will_auto_fix_error_file$error_name)]
+      ),
+    collapse = "\n"
+    ) else  all_will_be_fixed <- ""
 
 
-traits <- read_csv(
-  here("data", "data_raw_traits.csv"),
-  lazy = TRUE,
-  col_names = TRUE,
-  na = c("", "NA", "na"),
-  col_types =
-    cols(
-      .default = "c",
-      name = "c",
-      f = "d",
-      r = "d",
-      n = "d"
-    )
-) %>%
-  separate(name, c("genus", "species", "ssp", "subspecies"), "_",
-           remove = FALSE, extra = "drop", fill = "right") %>%
-  mutate(genus = str_sub(genus, 1, 4),
-         species = str_sub(species, 1, 4),
-         subspecies = str_sub(subspecies, 1, 4),
-         name = as.character(name)) %>%
-  unite(abb, genus, species, subspecies, sep = "", na.rm = TRUE) %>%
-  mutate(abb = str_replace(abb, "NA", ""),
-         abb = as_factor(abb)) %>%
-  select(-ssp) %>%
-  arrange(name)
-
-### Check congruency of traits and species table ###
-anti_join(traits, species, by = "name") %>% select(name)
-anti_join(species, traits, by = "name") %>% select(name)
-
-### Combine with species table ###
-traits <- traits %>%
-  semi_join(species, by = "name")
+if(exists("warning_file"))
+  all_warns <- paste(
+    c(
+      "WARNINGS!!!\n",
+      warning_messages[unique(warning_file$warning_name)],
+      "CLICK HERE TO GO TO FOLDER"
+      ),
+    collapse = "\n"
+    ) else all_warns = "No WARNINGS"
 
 
-
-#______________________________________________________________________________
-## 4 Check data frames #########################################################
+filename <- file.path(here("testthat", "warnings.png"))
 
 
-# prepare log files #####
-require_field_fix_error_file <- NULL
-will_auto_fix_error_file <- NULL
-warning_file <- NULL
+if(length(all_warns) == 0 & length(all_will_be_fixed) == 0)  file.remove(filename)
 
-
-### a Sites' vegetation cover #################################################
-
-### Set scale of total vegetation cover ###
-values <- seq(from = 0, to = 100, by = 5)
-
-### Check typos of sites cover ###
-data <- sites %>%
-  filter(!str_detect(id, "_seeded$")) %>%
-  filter(!(vegetation_cover %in% values) &
-           !is.na(vegetation_cover))
-
-if (count(data) > 0) {
-
-  write_csv(
-    data,
-    here("tests", "testthat", "warnings_sites_typos.csv")
-  )
-  print("Typos are printed to CSV")
-
-} else {
-
-  print("No typo in sites")
-
-}
-
-
-### b Species' vegetation cover ################################################
-
-### Set scale of species vegetation cover ###
-values <- c(.5, 2, 3, 4, seq(from = 0, to = 100, by = 5))
-
-### Check typos of species ###
-data <- species %>%
-  pivot_longer(-name, names_to = "id", values_to = "value") %>%
-  filter(!str_detect(id, "_seeded$")) %>%
-  filter(!(value %in% values) &
-           !is.na(value))
-
-if (count(data) > 0) {
-
-  write_csv(
-    data,
-    here("tests", "testthat", "warnings_species_typos.csv")
-  )
-  print("Typos are printed to CSV")
-
-} else {
-
-  print("No typo in species")
-
-}
-
-
-### c Compare vegetation_cover and accumulated_cover ###########################
-
-data <- species %>%
-  summarise(across(where(is.double), ~sum(.x, na.rm = TRUE))) %>%
-  pivot_longer(cols = everything(), names_to = "id", values_to = "value") %>%
-  mutate(id = factor(id)) %>%
-  full_join(sites, by = "id") %>%
-  mutate(diff = (value - vegetation_cover)) %>%
-  select(id, survey_year, vegetation_cover, value, diff) %>%
-  filter(!str_detect(id, "_seeded$")) %>%
-  filter(diff > 20 | diff < -5) %>%
-  arrange(survey_year, id, diff)
-
-readr::write_csv(
-  data,
-  here("tests", "testthat", "warnings_different_total_cover.csv")
-)
+png(filename, width = 6, height = 0.7 + (0.2 * length(c(gregexpr("\\n", all_warns)[[1]], gregexpr("\\n", all_will_be_fixed)[[1]]))), units = "in", res = 300)
+par(mar = c(0,0,0,0))
+plot(0,0, axes = F, xlab = "", ylab = "", type = "n")
+text(0,0.7, all_warns, col = "red", cex = 0.6)
+text(0,0, all_will_be_fixed, col = "red", cex = 0.6, pos = 1)
+# title("warnings!!!", col.main= "red", xpd = NULL, line = -1)
+dev.off()
