@@ -156,7 +156,10 @@ data <- sites %>%
 
 if (count(data) > 0) {
 
-  write_csv(data, here("outputs", "sites_typos.csv"))
+  write_csv(
+    data,
+    here("tests", "testthat", "warnings", "sites_typos.csv")
+    )
   print("Typos are printed to CSV")
 
 } else {
@@ -178,7 +181,10 @@ data <- species %>%
 
 if (count(data) > 0) {
 
-  write_csv(data, here("outputs", "species_typos.csv"))
+  write_csv(
+    data,
+    here("tests", "testthat", "warnings", "species_typos.csv")
+    )
   print("Typos are printed to CSV")
 
 } else {
@@ -202,7 +208,10 @@ data <- species %>%
 if (count(data) > 0) {
 
   print("CSV file printed with differences >20 and <(-5)")
-  readr::write_csv(data, here("tests", "testthat", "different_total_cover.csv"))
+  readr::write_csv(
+    data,
+    here("tests", "testthat", "warnings", "different_total_cover.csv")
+    )
 
 } else {
 
@@ -220,12 +229,12 @@ species %>%
 miss_var_summary(sites, order = TRUE)
 vis_miss(sites, cluster = FALSE)
 ggsave(
-  here("tests", "testthat", "missing_sites_300dpi_16x8cm.tiff"),
+  here("tests", "testthat", "reports", "missing_sites_300dpi_16x8cm.tiff"),
   dpi = 300, width = 16, height = 8, units = "cm"
 )
 miss_var_summary(traits, order = TRUE)
 vis_miss(traits, cluster = FALSE, sort_miss = TRUE)
 ggsave(
-  here("tests", "testthat", "missing_traits_300dpi_16x8cm.tiff"),
+  here("tests", "testthat", "reports", "missing_traits_300dpi_16x8cm.tiff"),
   dpi = 300, width = 16, height = 8, units = "cm"
 )
