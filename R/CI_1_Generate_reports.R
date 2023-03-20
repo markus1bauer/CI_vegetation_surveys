@@ -241,6 +241,7 @@ if(count(data) == 0) {
 
 } else {
 
+  chromote::set_chrome_args("--disable-crash-reporter")
   data %>%
     gt() %>%
     tab_options(table.font.size = px(5)) %>%
