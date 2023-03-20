@@ -151,10 +151,10 @@ data <- sites %>%
   filter(!(vegetation_cover %in% values) &
            !is.na(vegetation_cover))
 
-data %>%
-  gt() %>%
-  tab_options(table.font.size = px(10)) %>%
-  gtsave(here("tests", "testthat", "warnings_sites_typos.png"))
+#data %>%
+#  gt() %>%
+#  tab_options(table.font.size = px(10)) %>%
+#  gtsave(here("tests", "testthat", "warnings_sites_typos.png"))
 
 write_csv(
   data,
@@ -175,10 +175,10 @@ data <- species %>%
   filter(!(value %in% values) &
            !is.na(value))
 
-data %>%
-  gt() %>%
-  tab_options(table.font.size = px(10)) %>%
-  gtsave(here("tests", "testthat", "warnings_species_typos.png"))
+#data %>%
+#  gt() %>%
+#  tab_options(table.font.size = px(10)) %>%
+#  gtsave(here("tests", "testthat", "warnings_species_typos.png"))
 
 write_csv(
   data,
@@ -201,11 +201,11 @@ data <- species %>%
   arrange(survey_year, id, diff)
 
 
-data %>%
-  gt() %>%
-  tab_options(table.font.size = px(10)) %>%
-  gtsave(
-    here("tests", "testthat", "warnings_different_total_cover.png"))
+#data %>%
+#  gt() %>%
+#  tab_options(table.font.size = px(10)) %>%
+#  gtsave(
+#    here("tests", "testthat", "warnings_different_total_cover.png"))
 
 readr::write_csv(
   data,
