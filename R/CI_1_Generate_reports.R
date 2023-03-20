@@ -178,8 +178,8 @@ data <- species %>%
 
 data %>%
   gt() %>%
-  tab_options(table.font.size = px(10)) #%>%
-#  gtsave(here("tests", "testthat", "warnings_species_typos.png"))
+  tab_options(table.font.size = px(10)) %>%
+  gtsave(here("tests", "testthat", "warnings_species_typos.png"))
 
 write_csv(
   data,

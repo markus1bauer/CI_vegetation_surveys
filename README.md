@@ -19,11 +19,11 @@ A workflow for the continuous evaluation of vegetation surveys.
 
 ### Cover typos sites
 
-[![Sites typos](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_traits.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_species_typos.csv)
+[![Sites typos](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_species_typos.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_species_typos.csv)
 
 ### Cover typos species
 
-[![Species typos](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_sites.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_sites_typos.csv)
+[![Species typos](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_sites_typos.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_sites_typos.csv)
 
 ## References
 
