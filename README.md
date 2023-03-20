@@ -1,6 +1,7 @@
 # Continuous integration (CI) for vegetation surveys
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+![data-tests.yaml](https://github.com/markus1bauer/CI_vegetation_survey/actions/workflows/data-tests.yaml/badge.svg)
 
 Here, a workflow should be created for the continuous evaluation of vegetation surveys.
 
@@ -14,13 +15,12 @@ Example of Kim et al. (2022): [SCBImortality](https://github.com/SCBI-ForestGEO/
 
 Instructions for creating an updating data workflow: [UpdatingData.org/githubactions](https://www.updatingdata.org/githubactions/).
 
-### Workflow
+## Reports
 
+![Missing sites](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_sites_300dpi_16x8cm.png)
 
-![data-tests](https://github.com/markus1bauer/CI_vegetation_survey/actions/workflows/data-tests.yaml/badge.svg)
+![Missing traits](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_traits_300dpi_16x8cm.png)
+
+## Warnings
 
 ![Warnings](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.csv)
-
-![Reports](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_sites_300dpi_16x8cm.png)
-
-![Reports](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_traits_300dpi_16x8cm.tiff)

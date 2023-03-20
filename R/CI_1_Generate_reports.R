@@ -157,6 +157,6 @@ ggsave(
 miss_var_summary(traits, order = TRUE)
 vis_miss(traits, cluster = FALSE, sort_miss = TRUE)
 ggsave(
-  here("tests", "testthat", "reports_missing_traits_300dpi_16x8cm.tiff"),
+  here("tests", "testthat", "reports_missing_traits_300dpi_16x8cm.png"),
   dpi = 300, width = 16, height = 8, units = "cm"
 )
