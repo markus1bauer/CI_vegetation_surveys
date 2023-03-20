@@ -6,6 +6,7 @@
 library(dplyr)
 library(forcats)
 library(ggplot2)
+library(gt)
 library(here)
 library(naniar)
 library(readr)
@@ -189,7 +190,6 @@ data <- species %>%
   filter(diff > 20 | diff < -5) %>%
   arrange(survey_year, id, diff)
 
-library(gt)
 
 data %>%
   gt() %>%
