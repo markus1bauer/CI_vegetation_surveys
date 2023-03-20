@@ -204,8 +204,8 @@ if(count(data) == 0) {
 
   data %>%
     gt() %>%
-    tab_options(table.font.size = px(10)) #%>%
-    #gtsave(file)
+    tab_options(table.font.size = px(10)) %>%
+    gtsave(file)
 
 }
 
@@ -229,11 +229,25 @@ data <- species %>%
   filter(diff > 20 | diff < -5) %>%
   arrange(survey_year, id, diff)
 
+file <- here("tests", "testthat", "warnings_different_total_cover.png")
 
-data %>%
-  gt() %>%
-  tab_options(table.font.size = px(10)) %>%
-  gtsave(here("tests", "testthat", "warnings_different_total_cover.png"))
+if(count(data) == 0) {
+
+  if(file.exists(file)) {
+
+    file.remove(file)
+
+  }
+
+} else {
+
+  data %>%
+    gt() %>%
+    tab_options(table.font.size = px(5)) %>%
+    gtsave(file)
+
+}
+
 
 readr::write_csv(
   data,
