@@ -20,11 +20,6 @@ rm(list = ls())
 
 #### Load files ####
 
-path <- file.path(here("testthat", "will_auto_fix_error_file.csv"))
-if(file.exists(path)) will_auto_fix_error_file <- read.csv(path)
-
-
-
 path <- file.path(here("testthat", "warnings_file.csv"))
 if(file.exists(path)) warning_file <- read.csv(path)
 
