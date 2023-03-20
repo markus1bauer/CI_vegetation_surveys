@@ -151,6 +151,10 @@ data <- sites %>%
   filter(!(vegetation_cover %in% values) &
            !is.na(vegetation_cover))
 
+data %>%
+  gt() %>%
+  gtsave(here("tests", "testthat", "warnings_sites_typos.png"))
+
 write_csv(
   data,
   here("tests", "testthat", "warnings_sites_typos.csv")
@@ -169,6 +173,10 @@ data <- species %>%
   filter(!str_detect(id, "_seeded$")) %>%
   filter(!(value %in% values) &
            !is.na(value))
+
+data %>%
+  gt() %>%
+  gtsave(here("tests", "testthat", "warnings_species_typos.png"))
 
 write_csv(
   data,
