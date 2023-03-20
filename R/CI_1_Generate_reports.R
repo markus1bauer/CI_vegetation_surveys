@@ -219,8 +219,8 @@ miss_var_summary(sites, order = TRUE)
 vis_miss(sites, cluster = FALSE) +
   theme(plot.background = element_rect(fill = "white"))
 ggsave(
-  here("tests", "testthat", "reports_missing_sites.png"),
-  dpi = 300, width = 15, height = 9, units = "cm"
+  here("tests", "testthat", "reports_missing_sites.png")#,
+  #dpi = 300, width = 15, height = 9, units = "cm"
 )
 miss_var_summary(traits, order = TRUE)
 vis_miss(traits, cluster = FALSE, sort_miss = TRUE)
