@@ -90,6 +90,6 @@ jobs:
           git commit -am "add data"
           git push
 
-#      # Use testthat package to issue notifications of any data collection errors:
- #     - name: Run tests
- #       run: Rscript testthat.R
+      # Use testthat package to issue notifications of any data collection errors:
+      - name: Run tests
+        run: Rscript testthat.R
