@@ -152,10 +152,24 @@ data <- sites %>%
   filter(!(vegetation_cover %in% values) &
            !is.na(vegetation_cover))
 
-data %>%
-  gt() %>%
-  tab_options(table.font.size = px(10)) #%>%
-#  gtsave(here("tests", "testthat", "warnings_sites_typos.png"))
+file <- here("tests", "testthat", "warnings_sites_typos.png")
+
+if(count(data) == 0) {
+
+  if(file.exists(file)) {
+
+    file.remove(file)
+
+  }
+
+} else {
+
+  data %>%
+    gt() %>%
+    tab_options(table.font.size = px(10)) %>%
+    gtsave(file)
+
+}
 
 write_csv(
   data,
@@ -176,10 +190,24 @@ data <- species %>%
   filter(!(value %in% values) &
            !is.na(value))
 
-data %>%
-  gt() %>%
-  tab_options(table.font.size = px(10)) #%>%
-  #gtsave(here("tests", "testthat", "warnings_species_typos.png"))
+file <- here("tests", "testthat", "warnings_species_typos.png")
+
+if(count(data) == 0) {
+
+  if(file.exists(file)) {
+
+    file.remove(file)
+
+  }
+
+} else {
+
+  data %>%
+    gt() %>%
+    tab_options(table.font.size = px(10)) #%>%
+    #gtsave(file)
+
+}
 
 write_csv(
   data,
