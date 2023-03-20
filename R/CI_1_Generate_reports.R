@@ -152,9 +152,9 @@ data <- sites %>%
   filter(!(vegetation_cover %in% values) &
            !is.na(vegetation_cover))
 
-#data %>%
-#  gt() %>%
-#  tab_options(table.font.size = px(10)) %>%
+data %>%
+  gt() %>%
+  tab_options(table.font.size = px(10)) #%>%
 #  gtsave(here("tests", "testthat", "warnings_sites_typos.png"))
 
 write_csv(
@@ -176,9 +176,9 @@ data <- species %>%
   filter(!(value %in% values) &
            !is.na(value))
 
-#data %>%
-#  gt() %>%
-#  tab_options(table.font.size = px(10)) %>%
+data %>%
+  gt() %>%
+  tab_options(table.font.size = px(10)) #%>%
 #  gtsave(here("tests", "testthat", "warnings_species_typos.png"))
 
 write_csv(
