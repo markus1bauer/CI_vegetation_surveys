@@ -191,9 +191,9 @@ data <- species %>%
   arrange(survey_year, id, diff)
 
 
-data %>%
-  gt() %>%
-  gtsave(here("tests", "testthat", "warnings_different_total_cover.png"))
+#data %>%
+#  gt() %>%
+#  gtsave(here("tests", "testthat", "warnings_different_total_cover.png"))
 
 readr::write_csv(
   data,
