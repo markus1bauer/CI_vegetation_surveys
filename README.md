@@ -15,7 +15,6 @@ Here, a workflow should be created for the continuous evaluation of vegetation s
 
 ![Different total cover](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.csv)
 
-https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.csv
 
 
 ## References
