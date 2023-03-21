@@ -25,6 +25,7 @@ Imports:
   ggplot2,
   here,
   kableExtra,
+  knitr,
   naniar,
   readr,
   renv,
