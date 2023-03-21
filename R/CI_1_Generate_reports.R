@@ -8,6 +8,7 @@ library(forcats)
 library(ggplot2)
 library(here)
 library(kableExtra)
+library(knitr)
 library(naniar)
 library(readr)
 library(renv)
@@ -243,7 +244,8 @@ if(count(data) == 0) {
 } else {
 
   data %>%
-    knitr::kable() %>%
+    kable() %>%
+    kable_paper() %>%
     as_image(file = file)
 
 }
