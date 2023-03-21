@@ -15,6 +15,7 @@ library(renv)
 library(stringr)
 library(tibble)
 library(tidyr)
+webshot::install_phantomjs()
 
 ### Start ###
 rm(list = ls())
