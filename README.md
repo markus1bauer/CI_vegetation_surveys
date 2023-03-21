@@ -5,6 +5,11 @@
 
 A workflow for the continuous evaluation of vegetation surveys.
 
+1. Add data
+2. Commit
+3. Check Actions status in README
+4. Check README for reports and warnings
+
 ## Reports
 
 ![Missing sites](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_sites.png)
