@@ -6,17 +6,18 @@
 library(dplyr)
 library(forcats)
 library(ggplot2)
-library(gt)
 library(here)
+library(kableExtra)
 library(naniar)
 library(readr)
+library(renv)
 library(stringr)
 library(tibble)
 library(tidyr)
-library(webshot2)
 
 ### Start ###
 rm(list = ls())
+renv::status()
 
 
 
@@ -164,10 +165,10 @@ if(count(data) == 0) {
 
 } else {
 
-  data %>%
-    gt() %>%
-    tab_options(table.font.size = px(10)) %>%
-    gtsave(file)
+  data #%>%
+    #gt() %>%
+    #tab_options(table.font.size = px(10)) %>%
+    #gtsave(file)
 
 }
 
@@ -202,10 +203,10 @@ if(count(data) == 0) {
 
 } else {
 
-  data %>%
-    gt() %>%
-    tab_options(table.font.size = px(10)) %>%
-    gtsave(file)
+  data#%>%
+    #gt() %>%
+    #tab_options(table.font.size = px(10)) %>%
+    #gtsave(file)
 
 }
 
@@ -241,11 +242,9 @@ if(count(data) == 0) {
 
 } else {
 
-  chromote::set_chrome_args("--disable-crash-reporter")
   data %>%
-    gt() %>%
-    tab_options(table.font.size = px(5)) %>%
-    gtsave(file)
+    knitr::kable() %>%
+    as_image(file = file)
 
 }
 
