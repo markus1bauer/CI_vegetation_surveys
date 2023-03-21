@@ -23,16 +23,15 @@ Imports:
   dplyr,
   forcats,
   ggplot2,
-  gt,
   here,
+  kableExtra,
   naniar,
   readr,
+  renv,
   stringr,
   tibble,
-  tidyr,
-  webshot2
+  tidyr
 Suggests:
-  renv,
   lubridate,
   janitor,
   patchwork
