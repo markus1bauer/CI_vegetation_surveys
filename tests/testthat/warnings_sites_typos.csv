@@ -1,1 +1,5 @@
 plot,site,plot_size,exposition,sand_ratio,substrate_depth,target_type,seed_density,survey_date.seeded,survey_date.2018,survey_date.2019,survey_date.2020,survey_date.2021,survey_year,vegetation_cover,id
+L1_02,1,6,south,0,15,dry_grassland,4,2018-04-27,2018-07-21,2019-06-26,2020-06-13,2021-07-05,2021,84,L1_02_2021
+L1_03,1,6,south,0,15,dry_grassland,8,2018-04-27,2018-07-21,2019-06-26,2020-06-13,2021-07-05,2020,82,L1_03_2020
+L1_04,1,6,south,0,15,hay_meadow,8,2018-04-27,2018-07-21,2019-06-26,2020-06-13,2021-07-05,2019,61,L1_04_2019
+L1_05,1,6,south,25,15,hay_meadow,8,2018-04-27,2018-07-21,2019-06-26,2020-06-13,2021-07-05,2018,31,L1_05_2018
