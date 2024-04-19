@@ -20,15 +20,15 @@ rm(list = ls())
 
 #### Load files ####
 
-path <- file.path(here("testthat", "warnings_file.csv"))
-if(file.exists(path)) warning_file <- read.csv(path)
+path <- file.path(here("testthat", "warnings_different_total_cover.csv"))
+if(file.exists(path))
+  warning_file <- read.csv(path)
 
 
 # write warning messages ####
 
 warning_messages <- c(
-  "unhealthy_but_wrong_status" = "There are living trees that are unhealthy but status is not AU.",
-  "wounded_level_but_wrong_status_or_FAD" = "There are trees with wounded level but no W in FAD."
+  "warnings_different_total_cover" = "Total cover estimated and accumulated cover do not match"
   )
 
 
