@@ -16,6 +16,8 @@ A workflow for the continuous evaluation of vegetation surveys.
 
 ![Missing traits](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_traits.png)
 
+![Missing species](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_species.png)
+
 ## Warnings
 
 ### Different total cover (click on table)

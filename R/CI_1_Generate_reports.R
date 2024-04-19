@@ -6,7 +6,6 @@
 library(dplyr)
 library(forcats)
 library(ggplot2)
-library(gt)
 library(here)
 library(kableExtra)
 library(knitr)
@@ -16,10 +15,12 @@ library(renv)
 library(stringr)
 library(tibble)
 library(tidyr)
-webshot::install_phantomjs()
+library(webshot)
+webshot::install_phantomjs(force = TRUE)
 
 ### Start ###
 rm(list = ls())
+#renv::status()
 
 
 
@@ -68,7 +69,8 @@ sites <- read_csv(
                        survey_year == "2018" |
                        survey_year == "2019" |
                        survey_year == "2020" |
-                       survey_year == "2021"))
+                       survey_year == "2021")),
+    survey_year == "2021" #filter only year 2021
   )
 
 
@@ -91,10 +93,12 @@ species <- data.table::fread(
   group_by(name) %>%
   arrange(name) %>%
   select(name, tidyselect::all_of(sites$id)) %>%
-  mutate(total = sum(c_across(
-    starts_with("L") | starts_with("W")),
-    na.rm = TRUE),
-    presence = if_else(total > 0, 1, 0)) %>%
+  mutate(
+    total = sum(
+      c_across(starts_with("L") | starts_with("W")), na.rm = TRUE
+    ),
+    presence = if_else(total > 0, 1, 0)
+    ) %>%
   # filter only species which occur at least one time:
   filter(presence == 1) %>%
   ungroup() %>%
@@ -155,8 +159,9 @@ values <- seq(from = 0, to = 100, by = 5)
 
 ### Check typos of sites cover ###
 data <- sites %>%
-  #filter(!str_detect(id, "_seeded$")) %>%
-  filter(!(vegetation_cover %in% values) & !is.na(vegetation_cover))
+  filter(!str_detect(id, "_seeded$")) %>%
+  filter(!(vegetation_cover %in% values) &
+           !is.na(vegetation_cover))
 
 file <- here("tests", "testthat", "warnings_sites_typos.png")
 
@@ -170,10 +175,10 @@ if(count(data) == 0) {
 
 } else {
 
-  data %>%
-    gt() %>%
-    tab_options(table.font.size = px(10)) %>%
-    gtsave(file)
+  data #%>%
+    #gt() %>%
+    #tab_options(table.font.size = px(10)) %>%
+    #gtsave(file)
 
 }
 
@@ -193,8 +198,7 @@ values <- c(.5, 2, 3, 4, seq(from = 0, to = 100, by = 5))
 data <- species %>%
   pivot_longer(-name, names_to = "id", values_to = "value") %>%
   filter(!str_detect(id, "_seeded$")) %>%
-  filter(!(value %in% values) &
-           !is.na(value))
+  filter(!(value %in% values) & !is.na(value))
 
 file <- here("tests", "testthat", "warnings_species_typos.png")
 
@@ -233,8 +237,7 @@ data <- species %>%
   select(id, survey_year, vegetation_cover, value, diff) %>%
   filter(!str_detect(id, "_seeded$")) %>%
   filter(diff > 20 | diff < -5) %>%
-  arrange(survey_year, id, diff) #%>%
-  #mutate(warning_name == "warnings_different_total_cover")
+  arrange(survey_year, id, diff)
 
 file <- here("tests", "testthat", "warnings_different_total_cover.png")
 
@@ -266,17 +269,43 @@ readr::write_csv(
 ## 4 Check missing data ########################################################
 
 
+### a Sites --------------------------------------------------------------------
+
 miss_var_summary(sites, order = TRUE)
+
 vis_miss(sites, cluster = FALSE) +
   theme(plot.background = element_rect(fill = "white"))
+
 ggsave(
   here("tests", "testthat", "reports_missing_sites.png"),
   dpi = 300, height = 10, units = "cm"
 )
+
+
+### b Traits ------------------------------------------------------------------
+
 miss_var_summary(traits, order = TRUE)
+
 vis_miss(traits, cluster = FALSE, sort_miss = TRUE) +
   theme(plot.background = element_rect(fill = "white"))
+
 ggsave(
   here("tests", "testthat", "reports_missing_traits.png"),
+  dpi = 300, height = 10, units = "cm"
+)
+
+
+### c Species ------------------------------------------------------------------
+
+species %>%
+  mutate(
+    total = rowSums(pick(starts_with("L") | starts_with("W")), na.rm = TRUE)
+    ) %>%
+  select(name, total) %>%
+  vis_miss(cluster = FALSE, sort_miss = TRUE) +
+  theme(plot.background = element_rect(fill = "white"))
+
+ggsave(
+  here("tests", "testthat", "reports_missing_species.png"),
   dpi = 300, height = 10, units = "cm"
 )
