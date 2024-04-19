@@ -268,6 +268,8 @@ readr::write_csv(
 ## 4 Check missing data ########################################################
 
 
+### a Sites --------------------------------------------------------------------
+
 miss_var_summary(sites, order = TRUE)
 
 vis_miss(sites, cluster = FALSE) +
@@ -278,6 +280,9 @@ ggsave(
   dpi = 300, height = 10, units = "cm"
 )
 
+
+### b Traits ------------------------------------------------------------------
+
 miss_var_summary(traits, order = TRUE)
 
 vis_miss(traits, cluster = FALSE, sort_miss = TRUE) +
@@ -285,5 +290,21 @@ vis_miss(traits, cluster = FALSE, sort_miss = TRUE) +
 
 ggsave(
   here("tests", "testthat", "reports_missing_traits.png"),
+  dpi = 300, height = 10, units = "cm"
+)
+
+
+### c Species ------------------------------------------------------------------
+
+species %>%
+  mutate(
+    total = rowSums(pick(starts_with("L") | starts_with("W")), na.rm = TRUE)
+    ) %>%
+  select(name, total) %>%
+  vis_miss(cluster = FALSE, sort_miss = TRUE) +
+  theme(plot.background = element_rect(fill = "white"))
+
+ggsave(
+  here("tests", "testthat", "reports_missing_species.png"),
   dpi = 300, height = 10, units = "cm"
 )
