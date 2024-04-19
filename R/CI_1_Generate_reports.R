@@ -6,7 +6,6 @@
 library(dplyr)
 library(forcats)
 library(ggplot2)
-library(gt)
 library(here)
 library(kableExtra)
 library(knitr)
@@ -20,6 +19,7 @@ webshot::install_phantomjs()
 
 ### Start ###
 rm(list = ls())
+renv::status()
 
 
 
@@ -54,22 +54,18 @@ sites <- read_csv(
     values_transform = list (n = as.character)
   ) %>%
   pivot_wider(names_from = "x", values_from = "n") %>%
-  mutate(
-    plot = str_replace(plot, "-", "_"),
-    plot = str_replace(plot, "L_", "L"),
-    plot = str_replace(plot, "W_", "W"),
-    id = str_c(plot, survey_year, sep = "_"),
-    plot = factor(plot),
-    id = factor(id),
-    vegetation_cover = as.numeric(vegetation_cover)
-  ) %>%
-  filter(
-    !(site == "C" & (survey_year == "seeded" |
-                       survey_year == "2018" |
-                       survey_year == "2019" |
-                       survey_year == "2020" |
-                       survey_year == "2021"))
-  )
+  mutate(plot = str_replace(plot, "-", "_"),
+         plot = str_replace(plot, "L_", "L"),
+         plot = str_replace(plot, "W_", "W"),
+         id = str_c(plot, survey_year, sep = "_"),
+         plot = factor(plot),
+         id = factor(id),
+         vegetation_cover = as.numeric(vegetation_cover)) %>%
+  filter(!(site == "C" & (survey_year == "seeded" |
+                            survey_year == "2018" |
+                            survey_year == "2019" |
+                            survey_year == "2020" |
+                            survey_year == "2021")))
 
 
 
@@ -155,8 +151,9 @@ values <- seq(from = 0, to = 100, by = 5)
 
 ### Check typos of sites cover ###
 data <- sites %>%
-  #filter(!str_detect(id, "_seeded$")) %>%
-  filter(!(vegetation_cover %in% values) & !is.na(vegetation_cover))
+  filter(!str_detect(id, "_seeded$")) %>%
+  filter(!(vegetation_cover %in% values) &
+           !is.na(vegetation_cover))
 
 file <- here("tests", "testthat", "warnings_sites_typos.png")
 
@@ -170,10 +167,10 @@ if(count(data) == 0) {
 
 } else {
 
-  data %>%
-    gt() %>%
-    tab_options(table.font.size = px(10)) %>%
-    gtsave(file)
+  data #%>%
+    #gt() %>%
+    #tab_options(table.font.size = px(10)) %>%
+    #gtsave(file)
 
 }
 
@@ -233,8 +230,7 @@ data <- species %>%
   select(id, survey_year, vegetation_cover, value, diff) %>%
   filter(!str_detect(id, "_seeded$")) %>%
   filter(diff > 20 | diff < -5) %>%
-  arrange(survey_year, id, diff) #%>%
-  #mutate(warning_name == "warnings_different_total_cover")
+  arrange(survey_year, id, diff)
 
 file <- here("tests", "testthat", "warnings_different_total_cover.png")
 
