@@ -68,7 +68,8 @@ sites <- read_csv(
                        survey_year == "2018" |
                        survey_year == "2019" |
                        survey_year == "2020" |
-                       survey_year == "2021"))
+                       survey_year == "2021")),
+    survey_year == "2021" #filter only year 2021
   )
 
 
@@ -91,10 +92,12 @@ species <- data.table::fread(
   group_by(name) %>%
   arrange(name) %>%
   select(name, tidyselect::all_of(sites$id)) %>%
-  mutate(total = sum(c_across(
-    starts_with("L") | starts_with("W")),
-    na.rm = TRUE),
-    presence = if_else(total > 0, 1, 0)) %>%
+  mutate(
+    total = sum(
+      c_across(starts_with("L") | starts_with("W")), na.rm = TRUE
+    ),
+    presence = if_else(total > 0, 1, 0)
+    ) %>%
   # filter only species which occur at least one time:
   filter(presence == 1) %>%
   ungroup() %>%
@@ -194,8 +197,7 @@ values <- c(.5, 2, 3, 4, seq(from = 0, to = 100, by = 5))
 data <- species %>%
   pivot_longer(-name, names_to = "id", values_to = "value") %>%
   filter(!str_detect(id, "_seeded$")) %>%
-  filter(!(value %in% values) &
-           !is.na(value))
+  filter(!(value %in% values) & !is.na(value))
 
 file <- here("tests", "testthat", "warnings_species_typos.png")
 
@@ -267,15 +269,20 @@ readr::write_csv(
 
 
 miss_var_summary(sites, order = TRUE)
+
 vis_miss(sites, cluster = FALSE) +
   theme(plot.background = element_rect(fill = "white"))
+
 ggsave(
   here("tests", "testthat", "reports_missing_sites.png"),
   dpi = 300, height = 10, units = "cm"
 )
+
 miss_var_summary(traits, order = TRUE)
+
 vis_miss(traits, cluster = FALSE, sort_miss = TRUE) +
   theme(plot.background = element_rect(fill = "white"))
+
 ggsave(
   here("tests", "testthat", "reports_missing_traits.png"),
   dpi = 300, height = 10, units = "cm"
