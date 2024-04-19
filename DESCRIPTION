@@ -31,7 +31,8 @@ Imports:
   renv,
   stringr,
   tibble,
-  tidyr
+  tidyr,
+  webshot
 Suggests:
   lubridate,
   janitor,
