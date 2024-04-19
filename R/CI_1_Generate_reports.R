@@ -15,11 +15,11 @@ library(renv)
 library(stringr)
 library(tibble)
 library(tidyr)
-webshot::install_phantomjs()
+webshot::install_phantomjs(force = TRUE)
 
 ### Start ###
 rm(list = ls())
-renv::status()
+#renv::status()
 
 
 
@@ -54,18 +54,22 @@ sites <- read_csv(
     values_transform = list (n = as.character)
   ) %>%
   pivot_wider(names_from = "x", values_from = "n") %>%
-  mutate(plot = str_replace(plot, "-", "_"),
-         plot = str_replace(plot, "L_", "L"),
-         plot = str_replace(plot, "W_", "W"),
-         id = str_c(plot, survey_year, sep = "_"),
-         plot = factor(plot),
-         id = factor(id),
-         vegetation_cover = as.numeric(vegetation_cover)) %>%
-  filter(!(site == "C" & (survey_year == "seeded" |
-                            survey_year == "2018" |
-                            survey_year == "2019" |
-                            survey_year == "2020" |
-                            survey_year == "2021")))
+  mutate(
+    plot = str_replace(plot, "-", "_"),
+    plot = str_replace(plot, "L_", "L"),
+    plot = str_replace(plot, "W_", "W"),
+    id = str_c(plot, survey_year, sep = "_"),
+    plot = factor(plot),
+    id = factor(id),
+    vegetation_cover = as.numeric(vegetation_cover)
+  ) %>%
+  filter(
+    !(site == "C" & (survey_year == "seeded" |
+                       survey_year == "2018" |
+                       survey_year == "2019" |
+                       survey_year == "2020" |
+                       survey_year == "2021"))
+  )
 
 
 
