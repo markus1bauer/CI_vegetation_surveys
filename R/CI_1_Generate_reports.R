@@ -19,7 +19,7 @@ library(stringr)
 library(tibble)
 library(tidyr)
 #library(webshot)
-library(webshot2)
+#library(webshot2)
 #webshot::install_phantomjs(force = TRUE)
 
 
@@ -145,8 +145,8 @@ if(count(data) == 0) {
 
   data %>%
     gt() %>%
-    tab_options(table.font.size = px(10)) %>%
-    gtsave(file)
+    tab_options(table.font.size = px(10)) #%>%
+    #gtsave(file)
 
 }
 
@@ -182,8 +182,8 @@ if(count(data) == 0) {
 
   data %>%
     gt() %>%
-    tab_options(table.font.size = px(10)) %>%
-    gtsave(file)
+    tab_options(table.font.size = px(10)) #%>%
+    #gtsave(file)
 
 }
 
