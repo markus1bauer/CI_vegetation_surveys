@@ -313,3 +313,4 @@ ggsave(
   here("tests", "testthat", "reports_missing_traits.png"),
   dpi = 300, height = 10, units = "cm"
 )
+
