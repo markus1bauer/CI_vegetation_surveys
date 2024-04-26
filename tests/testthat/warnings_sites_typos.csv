@@ -1,1 +1,4 @@
-plot,site,plot_size,exposition,sand_ratio,substrate_depth,target_type,seed_density,survey_date.seeded,survey_date.2018,survey_date.2019,survey_date.2020,survey_date.2021,survey_year,vegetation_cover,id
+id,survey_date,survey_year,vegetation_cover
+L1_03_2020,2020-06-13,2020,82
+L1_04_2019,2019-06-26,2019,61
+L1_05_2018,2018-07-21,2018,31
