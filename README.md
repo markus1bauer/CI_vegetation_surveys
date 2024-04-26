@@ -10,25 +10,29 @@ A workflow for the continuous evaluation of vegetation surveys.
 3. Check Actions status in README
 4. Check README for reports and warnings
 
+
+
 ## Reports
 
 ### Missing sites
 
-![Missing sites](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_sites.png)
+[![Missing sites](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_missing_vegetation_cover.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_missing_vegetation_cover.csv)
 
 ### Missing species
 
-![Missing species](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_species.png)
+[![Missing species](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_missing_abundances.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_missing_abundances.csv)
 
 ### Missing traits
 
 ![Missing traits](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/reports_missing_traits.png)
 
-## Warnings
 
-### Different total cover (click on table)
 
-[![No typos found)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.csv)
+## Warnings (click on table)
+
+### Different total cover
+
+[![No differences found](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_different_total_cover.csv)
 
 ### Cover typos sites
 
@@ -37,6 +41,8 @@ A workflow for the continuous evaluation of vegetation surveys.
 ### Cover typos species
 
 [![No typos found](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_sites_typos.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_sites_typos.csv)
+
+
 
 ## References
 
