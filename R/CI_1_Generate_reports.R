@@ -18,7 +18,7 @@ library(renv)
 library(stringr)
 library(tibble)
 library(tidyr)
-library(webshot)
+#library(webshot)
 library(webshot2)
 #webshot::install_phantomjs(force = TRUE)
 
