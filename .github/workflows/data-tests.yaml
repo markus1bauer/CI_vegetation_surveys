@@ -9,18 +9,12 @@ on:
     paths:
       - 'data**'
       - '!README.md'
-      - 'R/CI_1_Generate_reports.R'
-      - 'R/CI_2_Generate_warnings.R'
-      - 'R/CI_3_Generate_map_of_reports.R'
-      - 'R/CI_4_Generate_daily_progress_reports.R'
+      - 'R/ci_1_generate_reports.R'
   pull_request:
     paths:
       - 'data**'
       - '!README.md'
-      - 'R/CI_1_Generate_reports.R'
-      - 'R/CI_2_Generate_warnings.R'
-      - 'R/CI_3_Generate_map_of_reports.R'
-      - 'R/CI_4_Generate_daily_progress_reports.R'
+      - 'R/ci_1_generate_reports.R'
 
 # Name the workflow as it will appear on GA status page
 # https://github.com/SCBI-ForestGEO/SCBImortality/actions
@@ -56,28 +50,7 @@ jobs:
       - name: Generate reports
         id: Generate_reports
         run: |
-          source("R/CI_1_Generate_reports.R")
-        shell: Rscript {0}
-
-      # Run R script to generate warning reports:
-      - name: Generate warnings
-        id: Generate_warnings
-        run: |
-          source("R/CI_2_Generate_warnings.R")
-        shell: Rscript {0}
-
-      # Run R script to generate map of reports:
-      - name: Generate map of reports
-        id: Generate_map_of_reports
-        run: |
-          source("R/CI_3_Generate_map_of_reports.R")
-        shell: Rscript {0}
-
-      # Run R script to generate daily progress reports:
-      - name: Generate daily progress reports
-        id: Generate_daily_progress_reports
-        run: |
-          source("R/CI_4_Generate_daily_progress_reports.R")
+          source("R/ci_1_generate_reports.R")
         shell: Rscript {0}
 
       # Commit and push all new files, where commits are assigned to GA bot:
