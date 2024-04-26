@@ -351,7 +351,8 @@ ggsave(
 #       starts_with("L") | starts_with("W")),
 #       na.rm = TRUE),
 #     presence = if_else(total > 0, 1, 0)
-#   ) %>%
+#   )
+
 #   # filter only species which occur at least one time:
 #   filter(presence == 1) %>%
 #   ungroup() %>%
