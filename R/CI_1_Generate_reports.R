@@ -19,7 +19,7 @@ library(stringr)
 library(tibble)
 library(tidyr)
 library(webshot2)
-#webshot::install_phantomjs(force = TRUE)
+webshot::install_phantomjs(force = TRUE)
 
 ### Start ###
 rm(list = ls())
