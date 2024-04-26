@@ -9,12 +9,12 @@ on:
     paths:
       - 'data**'
       - '!README.md'
-      - 'R/ci_1_generate_reports.R'
+      - 'R/CI_1_Generate_reports.R'
   pull_request:
     paths:
       - 'data**'
       - '!README.md'
-      - 'R/ci_1_generate_reports.R'
+      - 'R/CI_1_Generate_reports.R'
 
 # Name the workflow as it will appear on GA status page
 # https://github.com/SCBI-ForestGEO/SCBImortality/actions
@@ -50,7 +50,7 @@ jobs:
       - name: Generate reports
         id: Generate_reports
         run: |
-          source("R/ci_1_generate_reports.R")
+          source("R/CI_1_Generate_reports.R")
         shell: Rscript {0}
 
       # Commit and push all new files, where commits are assigned to GA bot:

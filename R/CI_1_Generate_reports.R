@@ -314,15 +314,3 @@ ggsave(
   here("tests", "testthat", "reports_missing_traits.png"),
   dpi = 300, height = 10, units = "cm"
 )
-
-
-#   ### Check that each species occurs at least one time ###
-#   group_by(name) %>%
-#   arrange(name) %>%
-#   select(name, tidyselect::all_of(sites$id)) %>%
-#   mutate(
-#     total = sum(c_across(
-#       starts_with("L") | starts_with("W")),
-#       na.rm = TRUE),
-#     presence = if_else(total > 0, 1, 0)
-#   )
