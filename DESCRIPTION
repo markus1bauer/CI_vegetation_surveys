@@ -35,8 +35,7 @@ Imports:
   stringr,
   tibble,
   tidyr,
-  webshot,
-  webshot2
+  webshot
 Suggests:
   lubridate,
   janitor,
