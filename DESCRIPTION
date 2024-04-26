@@ -27,6 +27,7 @@ Imports:
   kableExtra,
   knitr,
   naniar,
+  pak,
   readr,
   renv,
   stringr,
