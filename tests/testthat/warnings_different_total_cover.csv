@@ -1,4 +1,4 @@
-id,survey_year,vegetation_cover,value,diff
+id,survey_year,vegetation_cover,total_cover,difference
 W3_12_2018,2018,20,40.5,20.5
 W4_02_2018,2018,70,64,-6
 W2_04_2019,2019,80,101,21
