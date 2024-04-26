@@ -269,24 +269,11 @@ readr::write_csv(
 data <- sites %>%
   filter(is.na(vegetation_cover))
 
-file <- here("tests", "testthat", "warnings_missing_vegetation_cover.png")
+data %>%
+  kable() %>%
+  kable_paper() #%>%
+#as_image(file = here("tests", "testthat", "warnings_missing_vegetation_cover.png"))
 
-if(count(data) == 0) {
-
-  if(file.exists(file)) {
-
-    file.remove(file)
-
-  }
-
-} else {
-
-  data %>%
-    kable() %>%
-    kable_paper() #%>%
-    #as_image(file = file)
-
-}
 
 readr::write_csv(
   data,
@@ -304,24 +291,11 @@ data <- species %>%
   filter(total_cover < 40 & !str_detect(id, "_2018") & !str_detect(id, "_2019")) %>%
   arrange(survey_year, id)
 
-file <- here("tests", "testthat", "warnings_missing_abundances.png")
+data %>%
+  kable() %>%
+  kable_paper() #%>%
+#as_image(file = here("tests", "testthat", "warnings_missing_abundances.png"))
 
-if(count(data) == 0) {
-
-  if(file.exists(file)) {
-
-    file.remove(file)
-
-  }
-
-} else {
-
-  data %>%
-    kable() %>%
-    kable_paper() #%>%
-    #as_image(file = file)
-
-}
 
 readr::write_csv(
   data,
