@@ -11,6 +11,7 @@ library(here)
 library(kableExtra)
 library(knitr)
 library(naniar)
+library(pak)
 library(readr)
 library(renv)
 library(stringr)
@@ -147,7 +148,7 @@ traits <- traits %>%
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-## 1 Sites' vegetation cover ##################################################
+## 1 Typos vegetation cover ##################################################
 
 
 ### Set scale of total vegetation cover ###
@@ -183,7 +184,7 @@ write_csv(
   )
 
 
-## 2 Species' vegetation cover #################################################
+## 2 Typos abundance values ###################################################
 
 
 ### Set scale of species vegetation cover ###
@@ -193,8 +194,7 @@ values <- c(.5, 2, 3, 4, seq(from = 0, to = 100, by = 5))
 data <- species %>%
   pivot_longer(-name, names_to = "id", values_to = "value") %>%
   filter(!str_detect(id, "_seeded$")) %>%
-  filter(!(value %in% values) &
-           !is.na(value))
+  filter(!(value %in% values) & !is.na(value))
 
 file <- here("tests", "testthat", "warnings_species_typos.png")
 
@@ -273,6 +273,7 @@ ggsave(
   here("tests", "testthat", "reports_missing_sites.png"),
   dpi = 300, height = 10, units = "cm"
 )
+
 miss_var_summary(traits, order = TRUE)
 vis_miss(traits, cluster = FALSE, sort_miss = TRUE) +
   theme(plot.background = element_rect(fill = "white"))
