@@ -218,7 +218,6 @@ if(count(data) == 0) {
 
 }
 
-
 readr::write_csv(
   data,
   here("tests", "testthat", "warnings_different_total_cover.csv")
