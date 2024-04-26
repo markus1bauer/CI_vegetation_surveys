@@ -17,7 +17,8 @@ library(renv)
 library(stringr)
 library(tibble)
 library(tidyr)
-webshot::install_phantomjs(force = TRUE)
+library(webshot2)
+#webshot::install_phantomjs(force = TRUE)
 
 ### Start ###
 rm(list = ls())
@@ -230,7 +231,35 @@ readr::write_csv(
 
 ### a Sites -------------------------------------------------------------------
 
-miss_var_summary(sites, order = TRUE)
+#### * Percentage ####
+
+data <- miss_var_summary(sites, order = TRUE)
+
+file <- here("tests", "testthat", "warnings_missing_plots.png")
+
+if(count(data) == 0) {
+
+  if(file.exists(file)) {
+
+    file.remove(file)
+
+  }
+
+} else {
+
+  data %>%
+    kable() %>%
+    kable_paper() %>%
+    as_image(file = file)
+
+}
+
+readr::write_csv(
+  data,
+  here("tests", "testthat", "warnings_missing_plots.csv")
+)
+
+#### * Exact missing plots ####
 
 data <- sites %>%
   filter(is.na(vegetation_cover))

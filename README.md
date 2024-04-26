@@ -16,7 +16,9 @@ A workflow for the continuous evaluation of vegetation surveys.
 
 ### Missing sites
 
-[![Missing sites](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_missing_vegetation_cover.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_missing_vegetation_cover.csv)
+[![Missing plots](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_missing_plots.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_missing_plots.csv)
+
+[![Missing vegetation cover](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_missing_vegetation_cover.png)](https://github.com/markus1bauer/CI_vegetation_surveys/blob/main/tests/testthat/warnings_missing_vegetation_cover.csv)
 
 ### Missing species
 
