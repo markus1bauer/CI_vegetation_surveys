@@ -307,7 +307,7 @@ ggsave(
   dpi = 300, height = 10, units = "cm"
 )
 
-# %>%
+
 #   ### Check that each species occurs at least one time ###
 #   group_by(name) %>%
 #   arrange(name) %>%
