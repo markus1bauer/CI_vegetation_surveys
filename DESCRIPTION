@@ -27,6 +27,7 @@ Imports:
   here,
   kableExtra,
   knitr,
+  magick,
   naniar,
   pak,
   readr,
@@ -34,7 +35,7 @@ Imports:
   stringr,
   tibble,
   tidyr,
-  webshot
+  webshot2
 Suggests:
   lubridate,
   janitor,
