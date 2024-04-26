@@ -219,8 +219,8 @@ if(count(data) == 0) {
 
   data %>%
     kable() %>%
-    kable_paper() %>%
-    as_image(file = file)
+    kable_paper() #%>%
+    #as_image(file = file)
 
 }
 
@@ -254,8 +254,8 @@ if(count(data) == 0) {
 
   data %>%
     kable() %>%
-    kable_paper() %>%
-    as_image(file = file)
+    kable_paper() #%>%
+    #as_image(file = file)
 
 }
 
@@ -283,8 +283,8 @@ if(count(data) == 0) {
 
   data %>%
     kable() %>%
-    kable_paper() %>%
-    as_image(file = file)
+    kable_paper() #%>%
+    #as_image(file = file)
 
 }
 
@@ -318,8 +318,8 @@ if(count(data) == 0) {
 
   data %>%
     kable() %>%
-    kable_paper() %>%
-    as_image(file = file)
+    kable_paper() #%>%
+    #as_image(file = file)
 
 }
 
