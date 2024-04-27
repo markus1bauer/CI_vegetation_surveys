@@ -145,8 +145,8 @@ if(count(data) == 0) {
 
   data %>%
     gt() %>%
-    tab_options(table.font.size = px(10)) #%>%
-    #gtsave(file)
+    tab_options(table.font.size = px(10)) %>%
+    gtsave(file)
 
 }
 
